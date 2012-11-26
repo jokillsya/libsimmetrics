@@ -80,7 +80,8 @@ am_libsimmetrics_la_OBJECTS = libsimmetrics_la-cost.lo \
 	libsimmetrics_la-jaro.lo libsimmetrics_la-levenshtein.lo \
 	libsimmetrics_la-jaro_winkler.lo \
 	libsimmetrics_la-smith_waterman.lo \
-	libsimmetrics_la-smith_waterman_gotoh.lo
+	libsimmetrics_la-smith_waterman_gotoh.lo \
+	libsimmetrics_la-needleman_wunch.lo
 libsimmetrics_la_OBJECTS = $(am_libsimmetrics_la_OBJECTS)
 libsimmetrics_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -231,7 +232,7 @@ lib_LTLIBRARIES = libsimmetrics.la
 # Build information for each library
 
 # Sources for libsimmetrics
-libsimmetrics_la_SOURCES = cost.c libsimmetrics.c dyn_array.c soundex.c jaro.c levenshtein.c jaro_winkler.c smith_waterman.c smith_waterman_gotoh.c
+libsimmetrics_la_SOURCES = cost.c libsimmetrics.c dyn_array.c soundex.c jaro.c levenshtein.c jaro_winkler.c smith_waterman.c smith_waterman_gotoh.c needleman_wunch.c
 
 # Linker options libTestProgram
 libsimmetrics_la_LDFLAGS = 
@@ -319,6 +320,7 @@ include ./$(DEPDIR)/libsimmetrics_la-jaro.Plo
 include ./$(DEPDIR)/libsimmetrics_la-jaro_winkler.Plo
 include ./$(DEPDIR)/libsimmetrics_la-levenshtein.Plo
 include ./$(DEPDIR)/libsimmetrics_la-libsimmetrics.Plo
+include ./$(DEPDIR)/libsimmetrics_la-needleman_wunch.Plo
 include ./$(DEPDIR)/libsimmetrics_la-smith_waterman.Plo
 include ./$(DEPDIR)/libsimmetrics_la-smith_waterman_gotoh.Plo
 include ./$(DEPDIR)/libsimmetrics_la-soundex.Plo
@@ -406,6 +408,13 @@ libsimmetrics_la-smith_waterman_gotoh.lo: smith_waterman_gotoh.c
 #	source='smith_waterman_gotoh.c' object='libsimmetrics_la-smith_waterman_gotoh.lo' libtool=yes \
 #	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
 #	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-smith_waterman_gotoh.lo `test -f 'smith_waterman_gotoh.c' || echo '$(srcdir)/'`smith_waterman_gotoh.c
+
+libsimmetrics_la-needleman_wunch.lo: needleman_wunch.c
+	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsimmetrics_la-needleman_wunch.lo -MD -MP -MF $(DEPDIR)/libsimmetrics_la-needleman_wunch.Tpo -c -o libsimmetrics_la-needleman_wunch.lo `test -f 'needleman_wunch.c' || echo '$(srcdir)/'`needleman_wunch.c
+	$(am__mv) $(DEPDIR)/libsimmetrics_la-needleman_wunch.Tpo $(DEPDIR)/libsimmetrics_la-needleman_wunch.Plo
+#	source='needleman_wunch.c' object='libsimmetrics_la-needleman_wunch.lo' libtool=yes \
+#	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) \
+#	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-needleman_wunch.lo `test -f 'needleman_wunch.c' || echo '$(srcdir)/'`needleman_wunch.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

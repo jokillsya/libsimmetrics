@@ -8,6 +8,7 @@
 #include <string.h>
 #include "cost.h"
 #include "util.h"
+#include "needleman_wunch.h"
 
 float custom_needleman_wunch(const char *str1, const char *str2, sub_cost_t conf) {
 
@@ -41,6 +42,57 @@ float custom_needleman_wunch(const char *str1, const char *str2, sub_cost_t conf
 	}
 
 	return d[n][m];
+
+}
+
+float needleman_wunch(const char *str1, const char *str2) {
+
+	sub_cost_t sub_cost = sub_cost_1();
+	sub_cost.cost.gap_cost = 2;
+
+	return custom_needleman_wunch(str1, str2, sub_cost);
+
+}
+
+float custom_needleman_wunch_similarity(const char *str1, const char *str2, sub_cost_t conf) {
+
+	float nw = custom_needleman_wunch(str1, str2, conf);
+
+	float l1 = ((float)strlen(str1));
+	float l2 = ((float)strlen(str2));
+	float max_val = MAX(l1, l2);
+	float min_val = max_val;
+
+	if(conf.cost.max_cost > conf.cost.gap_cost)
+		max_val *= conf.cost.max_cost;
+	else
+		max_val *= conf.cost.gap_cost;
+
+	if(conf.cost.min_cost < conf.cost.gap_cost)
+		min_val *= conf.cost.min_cost;
+	else
+		min_val *= conf.cost.gap_cost;
+
+	if(min_val < 0) {
+
+		max_val -= min_val;
+		nw -= min_val;
+
+	}
+
+	if(max_val == 0)
+		return 0;
+	else
+		return 1 - (nw / max_val);
+
+}
+
+float needleman_wunch_similarity(const char *str1, const char *str2) {
+
+	sub_cost_t conf = sub_cost_1();
+	conf.cost.gap_cost = 2;
+
+	return custom_needleman_wunch_similarity(str1, str2, conf);
 
 }
 
