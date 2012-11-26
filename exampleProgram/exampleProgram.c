@@ -21,14 +21,14 @@
 #include "jaro_winkler.h"
 #include "smith_waterman.h"
 #include "smith_waterman_gotoh.h"
+#include "needleman_wunch.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int main(void) {
-	int x;
-#pragma omp parallel for
-	for(x = 0; x < 1000000; x++)
-		levenshtein_similarity("Walter BockWalter BockWalter BockWalter BockWalter BockWalter BockWalter BockWalter BockWalter BockWalter Bock", "Walter BokWalter BokWalter BokWalter BokWalter BokWalter BokWalter BokWalter BokWalter BokWalter Bok");
-  return 0;
+	float x;
+	x = needleman_wunch_similarity("Walter BockWalter BockWalter BockWalter BockWalter BockWalter BockWalter BockWalter BockWalter BockWalter Bock", "Walter BokWalter BokWalter BokWalter BokWalter BokWalter BokWalter BokWalter BokWalter BokWalter Bok");
+	printf("%f\n", x);
+	return 0;
 }

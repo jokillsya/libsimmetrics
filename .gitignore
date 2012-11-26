@@ -1,0 +1,11 @@
+libtool
+*.deps/
+Makefile
+*.Po
+config.log
+config.status
+*.o
+*.lo
+*.la
+*.libs/
+exampleProgram/exampleProgram
