@@ -154,9 +154,14 @@ float custom_smith_waterman_gotoh_similarity(const char *str1, const char *str2,
 
 float smith_waterman_gotoh_similarity(const char *str1, const char *str2) {
 
+	float ret;
+
+	affine_idx_cost_t *aff_idx_c = affine_gap_5_1();
+	sub_cost_t *sub_cost = sub_cost_5_3_min_3();
+
 	comp_idx_cost_t comp_cost = {
-			.gap_cost = affine_gap_5_1(),
-			.sub_cost = sub_cost_5_3_min_3()
+			.gap_cost = aff_idx_c,
+			.sub_cost = sub_cost
 	};
 
 	w_comp_idx_cost_t conf = {
@@ -164,7 +169,12 @@ float smith_waterman_gotoh_similarity(const char *str1, const char *str2) {
 			.comp_conf = &comp_cost
 	};
 
-	return custom_smith_waterman_gotoh_similarity(str1, str2, &conf);
+	free_affine_sub_cost(aff_idx_c);
+	free_sub_cost(sub_cost);
+
+	ret = custom_smith_waterman_gotoh_similarity(str1, str2, &conf);
+
+	return ret;
 
 }
 

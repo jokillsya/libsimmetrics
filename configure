@@ -3814,7 +3814,7 @@ fi
 
 
 
-CFLAGS="-g -O3 -Wall -fopenmp"
+CFLAGS="-g -std=gnu99 -O3 -Wall -fopenmp"
 
 case `pwd` in
   *\ * | *\	*)
