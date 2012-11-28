@@ -13,7 +13,7 @@ dnl this allows us specify individual liking flags for each target
 AM_PROG_CC_C_O 
 
 dnl Compiler flags...
-CFLAGS="-g -O3 -Wall -Wextra -fopenmp"
+CFLAGS="-g -O3 -Wall -fopenmp"
 
 dnl Initialize Libtool
 LT_INIT
@@ -24,6 +24,6 @@ AC_PROG_LIBTOOL
 
 AC_CONFIG_FILES(Makefile
                 exampleProgram/Makefile
-                libsimmetrics/Makefile
+                simmetrics/Makefile
                 include/Makefile)
 AC_OUTPUT

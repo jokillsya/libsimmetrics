@@ -10,7 +10,7 @@
 #include "util.h"
 #include "needleman_wunch.h"
 
-float custom_needleman_wunch(const char *str1, const char *str2, sub_cost_t conf) {
+float custom_needleman_wunch(const char *str1, const char *str2, sub_cost_t *conf) {
 
 	int n = strlen(str1);
 	int m = strlen(str2);
@@ -34,8 +34,8 @@ float custom_needleman_wunch(const char *str1, const char *str2, sub_cost_t conf
 
 		for(j = 1; j <= m; j++) {
 
-			cost = conf.cost_func(str1, i - 1, str2, j - 1);
-			d[i][j] = MIN3(d[i - 1][j] + conf.cost.gap_cost, d[i][j - 1] + conf.cost.gap_cost, d[i - 1][j - 1] + cost);
+			cost = conf->cost_func(str1, i - 1, str2, j - 1);
+			d[i][j] = MIN3(d[i - 1][j] + conf->cost->gap_cost, d[i][j - 1] + conf->cost->gap_cost, d[i - 1][j - 1] + cost);
 
 		}
 
@@ -47,14 +47,19 @@ float custom_needleman_wunch(const char *str1, const char *str2, sub_cost_t conf
 
 float needleman_wunch(const char *str1, const char *str2) {
 
-	sub_cost_t sub_cost = sub_cost_1();
-	sub_cost.cost.gap_cost = 2;
+	sub_cost_t *sub_cost = sub_cost_1();
+	sub_cost->cost->gap_cost = 2;
 
-	return custom_needleman_wunch(str1, str2, sub_cost);
+	float ret = custom_needleman_wunch(str1, str2, sub_cost);
+
+	free(sub_cost->cost);
+	free(sub_cost);
+
+	return ret;
 
 }
 
-float custom_needleman_wunch_similarity(const char *str1, const char *str2, sub_cost_t conf) {
+float custom_needleman_wunch_similarity(const char *str1, const char *str2, sub_cost_t *conf) {
 
 	float nw = custom_needleman_wunch(str1, str2, conf);
 
@@ -63,15 +68,15 @@ float custom_needleman_wunch_similarity(const char *str1, const char *str2, sub_
 	float max_val = MAX(l1, l2);
 	float min_val = max_val;
 
-	if(conf.cost.max_cost > conf.cost.gap_cost)
-		max_val *= conf.cost.max_cost;
+	if(conf->cost->max_cost > conf->cost->gap_cost)
+		max_val *= conf->cost->max_cost;
 	else
-		max_val *= conf.cost.gap_cost;
+		max_val *= conf->cost->gap_cost;
 
-	if(conf.cost.min_cost < conf.cost.gap_cost)
-		min_val *= conf.cost.min_cost;
+	if(conf->cost->min_cost < conf->cost->gap_cost)
+		min_val *= conf->cost->min_cost;
 	else
-		min_val *= conf.cost.gap_cost;
+		min_val *= conf->cost->gap_cost;
 
 	if(min_val < 0) {
 
@@ -89,10 +94,15 @@ float custom_needleman_wunch_similarity(const char *str1, const char *str2, sub_
 
 float needleman_wunch_similarity(const char *str1, const char *str2) {
 
-	sub_cost_t conf = sub_cost_1();
-	conf.cost.gap_cost = 2;
+	sub_cost_t *sub_cost = sub_cost_1();
+	sub_cost->cost->gap_cost = 2;
 
-	return custom_needleman_wunch_similarity(str1, str2, conf);
+	float ret = custom_needleman_wunch_similarity(str1, str2, sub_cost);
+
+	free(sub_cost->cost);
+	free(sub_cost);
+
+	return ret;
 
 }
 

@@ -3814,7 +3814,7 @@ fi
 
  
 
-CFLAGS="-g -O3 -Wall -Wextra -fopenmp"
+CFLAGS="-g -O3 -Wall -fopenmp"
 
 case `pwd` in
   *\ * | *\	*)
@@ -11346,7 +11346,7 @@ CC="$lt_save_CC"
 
 
 
-ac_config_files="$ac_config_files Makefile exampleProgram/Makefile libsimmetrics/Makefile include/Makefile"
+ac_config_files="$ac_config_files Makefile exampleProgram/Makefile simmetrics/Makefile include/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -12374,7 +12374,7 @@ do
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "exampleProgram/Makefile") CONFIG_FILES="$CONFIG_FILES exampleProgram/Makefile" ;;
-    "libsimmetrics/Makefile") CONFIG_FILES="$CONFIG_FILES libsimmetrics/Makefile" ;;
+    "simmetrics/Makefile") CONFIG_FILES="$CONFIG_FILES simmetrics/Makefile" ;;
     "include/Makefile") CONFIG_FILES="$CONFIG_FILES include/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

@@ -1,1 +1,1 @@
-SUBDIRS=libsimmetrics include exampleProgram
+SUBDIRS=simmetrics include exampleProgram

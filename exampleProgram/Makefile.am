@@ -19,7 +19,7 @@ noinst_PROGRAMS=exampleProgram
 exampleProgram_SOURCES= exampleProgram.c
 
 # Linker options for a.out
-exampleProgram_LDFLAGS = $(top_srcdir)/libsimmetrics/libsimmetrics.la
+exampleProgram_LDFLAGS = $(top_srcdir)/simmetrics/libsimmetrics.la
 
 # Compiler options for a.out
 exampleProgram_CPPFLAGS = -I$(top_srcdir)/include

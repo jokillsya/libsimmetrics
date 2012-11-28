@@ -79,7 +79,6 @@ float jaro_similarity(const char *str1, const char *str2) {
 	int i;
 	int trans = 0;
 
-//#pragma omp parallel for shared(trans)
 	for (i = 0; i < c1_len; i++) {
 
 		if (com1[i] != com2[i]) {

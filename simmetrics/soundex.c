@@ -16,7 +16,7 @@
 #include "soundex.h"
 #include "jaro_winkler.h"
 
-char US_EN_MAP[] = "01230120022455012623010202";
+const char US_EN_MAP[] = "01230120022455012623010202";
 
 static char map(const char _ch) {
 
