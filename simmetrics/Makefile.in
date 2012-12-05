@@ -74,10 +74,10 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libsimmetrics_la_LIBADD =
-am_libsimmetrics_la_OBJECTS = libsimmetrics_la-cost.lo \
-	libsimmetrics_la-simmetrics.lo libsimmetrics_la-dyn_array.lo \
-	libsimmetrics_la-soundex.lo libsimmetrics_la-jaro.lo \
-	libsimmetrics_la-levenshtein.lo \
+am_libsimmetrics_la_OBJECTS = libsimmetrics_la-util.lo \
+	libsimmetrics_la-cost.lo libsimmetrics_la-tokenizer.lo \
+	libsimmetrics_la-simmetrics.lo libsimmetrics_la-soundex.lo \
+	libsimmetrics_la-jaro.lo libsimmetrics_la-levenshtein.lo \
 	libsimmetrics_la-jaro_winkler.lo \
 	libsimmetrics_la-smith_waterman.lo \
 	libsimmetrics_la-smith_waterman_gotoh.lo \
@@ -233,7 +233,7 @@ lib_LTLIBRARIES = libsimmetrics.la
 # Build information for each library
 
 # Sources for libsimmetrics
-libsimmetrics_la_SOURCES = cost.c simmetrics.c dyn_array.c soundex.c jaro.c levenshtein.c jaro_winkler.c smith_waterman.c smith_waterman_gotoh.c needleman_wunch.c monge_elkan.c
+libsimmetrics_la_SOURCES = util.c cost.c tokenizer.c simmetrics.c soundex.c jaro.c levenshtein.c jaro_winkler.c smith_waterman.c smith_waterman_gotoh.c needleman_wunch.c monge_elkan.c
 
 # Linker options libTestProgram
 libsimmetrics_la_LDFLAGS = 
@@ -316,7 +316,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-cost.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-dyn_array.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-jaro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-jaro_winkler.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-levenshtein.Plo@am__quote@
@@ -326,6 +325,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-smith_waterman.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-smith_waterman_gotoh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-soundex.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-tokenizer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-util.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -348,6 +349,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
+libsimmetrics_la-util.lo: util.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsimmetrics_la-util.lo -MD -MP -MF $(DEPDIR)/libsimmetrics_la-util.Tpo -c -o libsimmetrics_la-util.lo `test -f 'util.c' || echo '$(srcdir)/'`util.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsimmetrics_la-util.Tpo $(DEPDIR)/libsimmetrics_la-util.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='util.c' object='libsimmetrics_la-util.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-util.lo `test -f 'util.c' || echo '$(srcdir)/'`util.c
+
 libsimmetrics_la-cost.lo: cost.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsimmetrics_la-cost.lo -MD -MP -MF $(DEPDIR)/libsimmetrics_la-cost.Tpo -c -o libsimmetrics_la-cost.lo `test -f 'cost.c' || echo '$(srcdir)/'`cost.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsimmetrics_la-cost.Tpo $(DEPDIR)/libsimmetrics_la-cost.Plo
@@ -355,19 +363,19 @@ libsimmetrics_la-cost.lo: cost.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-cost.lo `test -f 'cost.c' || echo '$(srcdir)/'`cost.c
 
+libsimmetrics_la-tokenizer.lo: tokenizer.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsimmetrics_la-tokenizer.lo -MD -MP -MF $(DEPDIR)/libsimmetrics_la-tokenizer.Tpo -c -o libsimmetrics_la-tokenizer.lo `test -f 'tokenizer.c' || echo '$(srcdir)/'`tokenizer.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsimmetrics_la-tokenizer.Tpo $(DEPDIR)/libsimmetrics_la-tokenizer.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='tokenizer.c' object='libsimmetrics_la-tokenizer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-tokenizer.lo `test -f 'tokenizer.c' || echo '$(srcdir)/'`tokenizer.c
+
 libsimmetrics_la-simmetrics.lo: simmetrics.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsimmetrics_la-simmetrics.lo -MD -MP -MF $(DEPDIR)/libsimmetrics_la-simmetrics.Tpo -c -o libsimmetrics_la-simmetrics.lo `test -f 'simmetrics.c' || echo '$(srcdir)/'`simmetrics.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsimmetrics_la-simmetrics.Tpo $(DEPDIR)/libsimmetrics_la-simmetrics.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='simmetrics.c' object='libsimmetrics_la-simmetrics.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-simmetrics.lo `test -f 'simmetrics.c' || echo '$(srcdir)/'`simmetrics.c
-
-libsimmetrics_la-dyn_array.lo: dyn_array.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsimmetrics_la-dyn_array.lo -MD -MP -MF $(DEPDIR)/libsimmetrics_la-dyn_array.Tpo -c -o libsimmetrics_la-dyn_array.lo `test -f 'dyn_array.c' || echo '$(srcdir)/'`dyn_array.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsimmetrics_la-dyn_array.Tpo $(DEPDIR)/libsimmetrics_la-dyn_array.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='dyn_array.c' object='libsimmetrics_la-dyn_array.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-dyn_array.lo `test -f 'dyn_array.c' || echo '$(srcdir)/'`dyn_array.c
 
 libsimmetrics_la-soundex.lo: soundex.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsimmetrics_la-soundex.lo -MD -MP -MF $(DEPDIR)/libsimmetrics_la-soundex.Tpo -c -o libsimmetrics_la-soundex.lo `test -f 'soundex.c' || echo '$(srcdir)/'`soundex.c

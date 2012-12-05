@@ -29,17 +29,26 @@
 #include "needleman_wunch.h"
 #include "simmetrics.h"
 #include "monge_elkan.h"
+#include "uthash.h"
+#include "tokenizer.h"
 
 int main(void) {
 
-	//printf("%s",strtok("lsadkjfhldkjf\nalskfdhaaskldfg\taklshdfg\ralksdgf","\t"));
 
-	const char *str1 = "aaa BBB ccc DDD eee FFF";
-	const char *str2 = "AAA bbb CCC ddd EEE fff";
-	int i;
-#pragma omp for
-	for(i = 0; i < 100000; i++)
-		monge_elkan_similarity(str1, str2);
-	//printf("%f\n", x);
+	const char *str = "hgf jkl ret jkl asdf gh piet jkl piet pompies piet";
+
+	tokenizer_t *tokens = NULL;
+	tokenizer_t *s;
+
+	tokens = uq_tokenize_hash(str, WHITESPACE_DELIMITERS);
+
+	for(s = tokens; s != NULL; s = s->hh.next) {
+
+		printf("H: %d, V: %s\n", s->key, s->value);
+
+	}
+
+	tokenizer_free(tokens);
+
 	return 0;
 }
