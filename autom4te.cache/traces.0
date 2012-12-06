@@ -1574,10 +1574,10 @@ m4trace:/usr/share/aclocal/lt~obsolete.m4:98: -1- AC_DEFUN([_LT_PROG_CXX])
 m4trace:/usr/share/aclocal-1.11/amversion.m4:17: -1- AC_DEFUN([AM_AUTOMAKE_VERSION], [am__api_version='1.11'
 dnl Some users find AM_AUTOMAKE_VERSION and mistake it for a way to
 dnl require some minimum version.  Point them to the right macro.
-m4_if([$1], [1.11.3], [],
+m4_if([$1], [1.11.6], [],
       [AC_FATAL([Do not call $0, use AM_INIT_AUTOMAKE([$1]).])])dnl
 ])
-m4trace:/usr/share/aclocal-1.11/amversion.m4:36: -1- AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION], [AM_AUTOMAKE_VERSION([1.11.3])dnl
+m4trace:/usr/share/aclocal-1.11/amversion.m4:36: -1- AC_DEFUN([AM_SET_CURRENT_AUTOMAKE_VERSION], [AM_AUTOMAKE_VERSION([1.11.6])dnl
 m4_ifndef([AC_AUTOCONF_VERSION],
   [m4_copy([m4_PACKAGE_VERSION], [AC_AUTOCONF_VERSION])])dnl
 _AM_AUTOCONF_VERSION(m4_defn([AC_AUTOCONF_VERSION]))])
@@ -2267,7 +2267,7 @@ m4trace:configure.ac:5: -1- m4_pattern_allow([^ac_ct_CC$])
 m4trace:configure.ac:5: -1- m4_pattern_allow([^EXEEXT$])
 m4trace:configure.ac:5: -1- m4_pattern_allow([^OBJEXT$])
 m4trace:configure.ac:7: -1- _m4_warn([obsolete], [The macro `AC_CANONICAL_SYSTEM' is obsolete.
-You should run autoupdate.], [../../lib/autoconf/general.m4:1858: AC_CANONICAL_SYSTEM is expanded from...
+You should run autoupdate.], [../../lib/autoconf/general.m4:1857: AC_CANONICAL_SYSTEM is expanded from...
 configure.ac:7: the top level])
 m4trace:configure.ac:7: -1- m4_pattern_allow([^build$])
 m4trace:configure.ac:7: -1- m4_pattern_allow([^build_cpu$])
@@ -2284,8 +2284,8 @@ m4trace:configure.ac:7: -1- m4_pattern_allow([^target_os$])
 m4trace:configure.ac:10: -1- AM_INIT_AUTOMAKE
 m4trace:configure.ac:10: -1- m4_pattern_allow([^AM_[A-Z]+FLAGS$])
 m4trace:configure.ac:10: -1- AM_SET_CURRENT_AUTOMAKE_VERSION
-m4trace:configure.ac:10: -1- AM_AUTOMAKE_VERSION([1.11.3])
-m4trace:configure.ac:10: -1- _AM_AUTOCONF_VERSION([2.68])
+m4trace:configure.ac:10: -1- AM_AUTOMAKE_VERSION([1.11.6])
+m4trace:configure.ac:10: -1- _AM_AUTOCONF_VERSION([2.69])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^INSTALL_PROGRAM$])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^INSTALL_SCRIPT$])
 m4trace:configure.ac:10: -1- m4_pattern_allow([^INSTALL_DATA$])
