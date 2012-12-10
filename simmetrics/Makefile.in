@@ -100,7 +100,8 @@ am_libsimmetrics_la_OBJECTS = libsimmetrics_la-util.lo \
 	libsimmetrics_la-smith_waterman_gotoh.lo \
 	libsimmetrics_la-needleman_wunch.lo \
 	libsimmetrics_la-monge_elkan.lo \
-	libsimmetrics_la-block_distance.lo
+	libsimmetrics_la-block_distance.lo \
+	libsimmetrics_la-euclidean_distance.lo
 libsimmetrics_la_OBJECTS = $(am_libsimmetrics_la_OBJECTS)
 libsimmetrics_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -256,7 +257,7 @@ lib_LTLIBRARIES = libsimmetrics.la
 # Build information for each library
 
 # Sources for libsimmetrics
-libsimmetrics_la_SOURCES = util.c cost.c tokenizer.c simmetrics.c soundex.c jaro.c levenshtein.c jaro_winkler.c smith_waterman.c smith_waterman_gotoh.c needleman_wunch.c monge_elkan.c block_distance.c
+libsimmetrics_la_SOURCES = util.c cost.c tokenizer.c simmetrics.c soundex.c jaro.c levenshtein.c jaro_winkler.c smith_waterman.c smith_waterman_gotoh.c needleman_wunch.c monge_elkan.c block_distance.c euclidean_distance.c
 
 # Linker options libTestProgram
 libsimmetrics_la_LDFLAGS = 
@@ -341,6 +342,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-block_distance.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-cost.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-euclidean_distance.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-jaro.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-jaro_winkler.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsimmetrics_la-levenshtein.Plo@am__quote@
@@ -464,6 +466,13 @@ libsimmetrics_la-block_distance.lo: block_distance.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='block_distance.c' object='libsimmetrics_la-block_distance.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-block_distance.lo `test -f 'block_distance.c' || echo '$(srcdir)/'`block_distance.c
+
+libsimmetrics_la-euclidean_distance.lo: euclidean_distance.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libsimmetrics_la-euclidean_distance.lo -MD -MP -MF $(DEPDIR)/libsimmetrics_la-euclidean_distance.Tpo -c -o libsimmetrics_la-euclidean_distance.lo `test -f 'euclidean_distance.c' || echo '$(srcdir)/'`euclidean_distance.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsimmetrics_la-euclidean_distance.Tpo $(DEPDIR)/libsimmetrics_la-euclidean_distance.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='euclidean_distance.c' object='libsimmetrics_la-euclidean_distance.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsimmetrics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libsimmetrics_la-euclidean_distance.lo `test -f 'euclidean_distance.c' || echo '$(srcdir)/'`euclidean_distance.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

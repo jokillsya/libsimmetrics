@@ -13,7 +13,7 @@ dnl this allows us specify individual liking flags for each target
 AM_PROG_CC_C_O 
 
 dnl Compiler flags...
-CFLAGS="-std=gnu99 -O2 -Wall -fopenmp"
+CFLAGS="-std=gnu99 -O2 -Wall -fopenmp -lm"
 
 dnl Initialize Libtool
 LT_INIT
