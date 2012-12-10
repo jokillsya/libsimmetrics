@@ -11,6 +11,7 @@
 #include "cost.h"
 #include "uthash.h"
 #include "utlist.h"
+#include "utarray.h"
 #include "tokenizer.h"
 
 static unsigned int str_hash(const char *s) {
@@ -73,7 +74,6 @@ hash_token_t *uq_tokenize_to_hash(const char *str, const char *delimiters) {
 			s = malloc(sizeof(hash_token_t));
 			s->key = str_hash(tok);
 			s->value = strdup(tok);
-			//strncpy(s->value, tok, (strlen(tok) + 1));
 			HASH_ADD_INT(table, key, s);
 
 		}
@@ -121,6 +121,29 @@ hash_token_t *merge_tokens(hash_token_t *t1, hash_token_t *t2) {
 	}
 
 	return res;
+
+}
+
+UT_array *tokenize_to_utarray(const char *str, const char *delimiters) {
+
+	UT_array *strs;
+
+	char *tok;
+	char tmp[strlen(str) + 1];
+	strcpy(tmp, str);
+
+	utarray_new(strs, &ut_str_icd);
+
+	tok = strtok(tmp, delimiters);
+
+	while(tok != NULL) {
+
+		utarray_push_back(strs, &tok);
+		tok = strtok(NULL, delimiters);
+
+	}
+
+	return strs;
 
 }
 
