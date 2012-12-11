@@ -1,1 +1,4 @@
-This is a C port of the Simmetrics project. Progress is slow - loads to port - but going well. I'll update this readme with more info when the project enters alpha testing.
+This is a C port of the Simmetrics project.
+
+Most of the metrics have been ported and are quite simple to use, I'll add some samples later.
+
