@@ -67,8 +67,6 @@ const float matching_coefficient_similarity_custom(const char *str1, const char 
 
 	const float ret = matching_coefficient_custom(str1, str2, cost) / (const float) tot_p;
 
-	printf("TOT_P :: %f\n", ret);
-
 	utarray_free(tm1);
 	utarray_free(tm2);
 
