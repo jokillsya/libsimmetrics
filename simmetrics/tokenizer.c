@@ -8,6 +8,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "cost.h"
 #include "uthash.h"
 #include "utlist.h"
@@ -50,6 +51,189 @@ dl_token_t *tokenize_to_dllist(const char *str, const char *delimiters) {
 	}
 
 	return r;
+
+}
+
+/**
+ * This function will return NULL if the qgram_t struct contains invalid values
+ */
+dl_token_t *qgram_tokenize_to_dllist(const char *str, const qgram_t *qtype) {
+
+	int i;
+	int init_len = strlen(str) + 1;
+	char *tmp;
+
+	//Mem corruption will occur otherwise...
+	if(qtype->qgram_len >= ((init_len - 1) / 2))
+		return NULL;
+
+	if(qtype->extended) {
+
+		tmp = calloc((init_len + qtype->qgram_len), sizeof(char));
+
+		for(i = 0; i < (qtype->qgram_len - 1); i++)
+			strcat(tmp, QGRAM_SP);
+
+		strcat(tmp, str);
+
+		for(i = 0; i < (qtype->qgram_len - 1); i++)
+			strcat(tmp, QGRAM_EP);
+
+	} else {
+
+		tmp = calloc(init_len, sizeof(char));
+		strcpy(tmp, str);
+
+	}
+
+	dl_token_t *el;
+	dl_token_t *r = NULL;
+
+	int cp = 0;
+	int len = strlen(tmp) - qtype->qgram_len + 1;
+	char *t_ptr;
+
+	while(cp < len) {
+
+		t_ptr = (char *)&tmp[cp];
+		el = (dl_token_t *)malloc(sizeof(dl_token_t));
+		//Allocate all chars - plus terminator...
+		el->token = calloc((qtype->qgram_len + 1), sizeof(char));
+		//Copy bytes safely - strncpy should append the \0
+		strncpy(el->token, t_ptr, (sizeof(char) * qtype->qgram_len));
+		DL_APPEND(r, el);
+		cp++;
+	}
+
+	free(tmp);
+
+	return r;
+
+}
+
+hash_token_t *qgram_uq_tokenize_to_hash(const char *str, const qgram_t *qtype) {
+
+	int i;
+	int init_len = strlen(str) + 1;
+	unsigned int hash;
+	char *tmp;
+
+	//Mem corruption will occur otherwise...
+	if(qtype->qgram_len >= ((init_len - 1) / 2))
+		return NULL;
+
+	if(qtype->extended) {
+
+		tmp = calloc((init_len + qtype->qgram_len), sizeof(char));
+
+		for(i = 0; i < (qtype->qgram_len - 1); i++)
+			strcat(tmp, QGRAM_SP);
+
+		strcat(tmp, str);
+
+		for(i = 0; i < (qtype->qgram_len - 1); i++)
+			strcat(tmp, QGRAM_EP);
+
+	} else {
+
+		tmp = calloc(init_len, sizeof(char));
+		strcpy(tmp, str);
+
+	}
+
+	hash_token_t *s, *table = NULL;
+
+	int cp = 0;
+	int len = strlen(tmp) - qtype->qgram_len + 1;
+	char *t_ptr, *hchk;
+
+	while(cp < len) {
+
+		t_ptr = (char *)&tmp[cp];
+		//Allocate all chars - plus terminator...
+		hchk = calloc((qtype->qgram_len + 1), sizeof(char));
+		//Copy bytes safely - strncpy should append the \0
+		strncpy(hchk, t_ptr, (sizeof(char) * qtype->qgram_len));
+
+		hash = str_hash(hchk);
+
+		HASH_FIND_INT(table, &hash, s);
+
+		if(s == NULL) {
+
+			s = malloc(sizeof(hash_token_t));
+			s->key = hash;
+			s->value = strdup(hchk);
+			HASH_ADD_INT(table, key, s);
+
+		}
+
+		free(hchk);
+
+		cp++;
+
+	}
+
+	free(tmp);
+
+	return table;
+
+}
+
+UT_array *qgram_tokenize_to_utarray(const char *str, const qgram_t *qtype) {
+
+	int i;
+	int init_len = strlen(str) + 1;
+	char *tmp;
+
+	//Mem corruption will occur otherwise...
+	if(qtype->qgram_len >= ((init_len - 1) / 2))
+		return NULL;
+
+	if(qtype->extended) {
+
+		tmp = calloc((init_len + qtype->qgram_len), sizeof(char));
+
+		for(i = 0; i < (qtype->qgram_len - 1); i++)
+			strcat(tmp, QGRAM_SP);
+
+		strcat(tmp, str);
+
+		for(i = 0; i < (qtype->qgram_len - 1); i++)
+			strcat(tmp, QGRAM_EP);
+
+	} else {
+
+		tmp = calloc(init_len, sizeof(char));
+		strcpy(tmp, str);
+
+	}
+
+	UT_array *strs;
+	utarray_new(strs, &ut_str_icd);
+
+	int cp = 0;
+	int len = strlen(tmp) - qtype->qgram_len + 1;
+	char *t_ptr, *el;
+
+	while(cp < len) {
+
+		t_ptr = (char *)&tmp[cp];
+		//Allocate all chars - plus terminator...
+		el = calloc((qtype->qgram_len + 1), sizeof(char));
+		//Copy bytes safely - strncpy should append the \0
+		strncpy(el, t_ptr, (sizeof(char) * qtype->qgram_len));
+
+		utarray_push_back(strs, &el);
+
+		free(el);
+
+		cp++;
+	}
+
+	free(tmp);
+
+	return strs;
 
 }
 

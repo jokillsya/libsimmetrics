@@ -6,19 +6,20 @@
  */
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "cost.h"
 #include "utlist.h"
 #include "utarray.h"
 #include "uthash.h"
 #include "tokenizer.h"
 
-int block_distance_custom(const char * str1, const char *str2, cost_t *cost) {
+int block_distance_custom(const char * str1, const char *str2, std_tokenizer_t *tokenizer) {
 
-	UT_array *t1 = tokenize_to_utarray(str1, cost->tok_str);
-	UT_array *t2 = tokenize_to_utarray(str2, cost->tok_str);
+	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
+	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
 
-	hash_token_t *h1 = uq_tokenize_to_hash(str1, cost->tok_str);
-	hash_token_t *h2 = uq_tokenize_to_hash(str2, cost->tok_str);
+	hash_token_t *h1 = tokenizer->tok_uq_hash_func(str1, tokenizer->delimiters);
+	hash_token_t *h2 = tokenizer->tok_uq_hash_func(str2, tokenizer->delimiters);
 
 	hash_token_t *all = merge_tokens(h1, h2);
 	hash_token_t *s;
@@ -66,25 +67,24 @@ int block_distance_custom(const char * str1, const char *str2, cost_t *cost) {
 
 int block_distance(const char * str1, const char *str2) {
 
-	cost_t cost = {
-			.max_cost = 0,
-			.min_cost = 0,
-			.gap_cost = 0,
-			.tok_str = WHITESPACE_DELIMITERS
+	std_tokenizer_t tokenizer = {
+			.delimiters = WHITESPACE_DELIMITERS,
+			.tok_utarr_func = &tokenize_to_utarray,
+			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return block_distance_custom(str1, str2, &cost);
+	return block_distance_custom(str1, str2, &tokenizer);
 
 }
 
-float block_distance_similarity_custom(const char *str1, const char *str2, cost_t *cost) {
+float block_distance_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
 
-	UT_array *strs1 = tokenize_to_utarray(str1, cost->tok_str);
-	UT_array *strs2 = tokenize_to_utarray(str2, cost->tok_str);
+	UT_array *strs1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
+	UT_array *strs2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
 
 	float ret;
 	float t_pos = ((float) utarray_len(strs1)) + ((float) utarray_len (strs2));
-	float t_dis = (float) block_distance_custom(str1, str2, cost);
+	float t_dis = (float) block_distance_custom(str1, str2, tokenizer);
 
 	ret = (t_pos - t_dis) / t_pos;
 
@@ -97,14 +97,13 @@ float block_distance_similarity_custom(const char *str1, const char *str2, cost_
 
 float block_distance_similarity(const char *str1, const char *str2) {
 
-	cost_t cost = {
-			.max_cost = 0,
-			.min_cost = 0,
-			.gap_cost = 0,
-			.tok_str = WHITESPACE_DELIMITERS
+	std_tokenizer_t tokenizer = {
+			.delimiters = WHITESPACE_DELIMITERS,
+			.tok_utarr_func = &tokenize_to_utarray,
+			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return block_distance_similarity_custom(str1, str2, &cost);
+	return block_distance_similarity_custom(str1, str2, &tokenizer);
 
 }
 

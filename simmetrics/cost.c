@@ -99,7 +99,6 @@ affine_idx_cost_t* affine_gap_1_over_3() {
 	cost->max_cost = 1;
 	cost->min_cost = 0;
 	cost->gap_cost = 0;
-	cost->tok_str = NULL;
 
 	sub_cost->cost = cost;
 	sub_cost->cost_func = &_affine_gap_1_over_3;
@@ -116,7 +115,6 @@ affine_idx_cost_t* affine_gap_5_1() {
 	cost->max_cost = 5;
 	cost->min_cost = 0;
 	cost->gap_cost = 0;
-	cost->tok_str = NULL;
 
 	sub_cost->cost = cost;
 	sub_cost->cost_func = &_affine_gap_5_1;
@@ -133,7 +131,6 @@ sub_cost_t* sub_cost_1() {
 	cost->max_cost = 1;
 	cost->min_cost = 0;
 	cost->gap_cost = 0;
-	cost->tok_str = NULL;
 
 	sub_cost->cost = cost;
 	sub_cost->cost_func = &_sub_cost_1;
@@ -150,7 +147,6 @@ sub_cost_t* sub_cost_1_min_2() {
 	cost->max_cost = 1;
 	cost->min_cost = -2;
 	cost->gap_cost = 0.5;
-	cost->tok_str = NULL;
 
 	sub_cost->cost = cost;
 	sub_cost->cost_func = &_sub_cost_1_min_2;
@@ -166,7 +162,6 @@ sub_cost_t* sub_cost_5_3_min_3() {
 	cost->max_cost = 5;
 	cost->min_cost = -3;
 	cost->gap_cost = 0;
-	cost->tok_str = NULL;
 
 	sub_cost->cost = cost;
 	sub_cost->cost_func = &_sub_cost_5_3_min_3;

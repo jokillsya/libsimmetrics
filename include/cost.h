@@ -14,8 +14,6 @@
 #define CHR_EXT_SCORE (float)5
 #define CHR_APR_SCORE (float)3
 
-#define WHITESPACE_DELIMITERS "\r\n\t \u00A0"
-
 typedef enum {
 	COST,
 	SUB_COST,
@@ -27,7 +25,6 @@ typedef enum {
 } cost_type_e;
 
 typedef struct {
-	char *tok_str; //In case a tokenizer is used in the metric
 	float max_cost;
 	float min_cost;
 	float gap_cost; //Provided in case a metric needs it...

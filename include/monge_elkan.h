@@ -8,7 +8,7 @@
 #ifndef MONGE_ELKAN_H_
 #define MONGE_ELKAN_H_
 
-float custom_monge_elkan_similarity(const char *str1, const char *str2, metric_function_t *metric, const void *v_conf, const cost_type_e cost_type);
+float custom_monge_elkan_similarity(const char *str1, const char *str2, metric_function_t *metric, const void *v_conf, const cost_type_e cost_type, const char *tok_str);
 float monge_elkan_similarity(const char *str1, const char *str2);
 
 #endif /* MONGE_ELKAN_H_ */

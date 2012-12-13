@@ -1,19 +1,24 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "uthash.h"
-#include "utarray.h"
+#include <stdbool.h>
 #include "utlist.h"
-#include "cost.h"
+#include "utarray.h"
+#include "uthash.h"
 #include "tokenizer.h"
-#include "overlap_coefficient.h"
+#include "qgrams_distance.h"
 
 int main(void) {
 
-	const char *str1 = "Test String1";
-	const char *str2 = "Test String2";
-	const float res = overlap_coefficient_similarity(str1, str2);
-	printf("%f\n", res);
+	int i;
+	const char *str1 = "aaa BBB ccc DDD eee FFF ggg";
+	const char *str2 = "AAA bbb CCC ddd EEE fff GGG";
+
+	for (i = 0; i < 1000000; i++) {
+
+		qgrams_distance_similarity(str1, str2);
+
+	}
 	return EXIT_SUCCESS;
 
 }

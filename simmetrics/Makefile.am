@@ -11,7 +11,7 @@ lib_LTLIBRARIES = libsimmetrics.la
 libsimmetrics_la_SOURCES = 	util.c cost.c tokenizer.c simmetrics.c soundex.c jaro.c levenshtein.c jaro_winkler.c \
 							smith_waterman.c smith_waterman_gotoh.c needleman_wunch.c monge_elkan.c block_distance.c \
 							euclidean_distance.c cosine_similarity.c dice_similarity.c jaccard_similarity.c matching_coefficient.c \
-							overlap_coefficient.c
+							overlap_coefficient.c qgrams_distance.c
 
 # Linker options libTestProgram
 libsimmetrics_la_LDFLAGS = 

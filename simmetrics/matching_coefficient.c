@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "cost.h"
 #include "utlist.h"
 #include "utarray.h"
@@ -15,10 +16,10 @@
 #include "tokenizer.h"
 #include "matching_coefficient.h"
 
-const float matching_coefficient_custom(const char *str1, const char *str2, cost_t *cost) {
+const float matching_coefficient_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
 
-	UT_array *t1 = tokenize_to_utarray(str1, cost->tok_str);
-	UT_array *t2 = tokenize_to_utarray(str2, cost->tok_str);
+	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
+	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
 
 	char **tmp1 = NULL, **tmp2 = NULL;
 	int tf = 0;
@@ -47,25 +48,24 @@ const float matching_coefficient_custom(const char *str1, const char *str2, cost
 
 const float matching_coefficient(const char *str1, const char *str2) {
 
-	cost_t cost = {
-			.max_cost = 0,
-			.min_cost = 0,
-			.gap_cost = 0,
-			.tok_str = WHITESPACE_DELIMITERS
+	std_tokenizer_t tokenizer = {
+			.delimiters = WHITESPACE_DELIMITERS,
+			.tok_utarr_func = &tokenize_to_utarray,
+			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return matching_coefficient_custom(str1, str2, &cost);
+	return matching_coefficient_custom(str1, str2, &tokenizer);
 
 }
 
-const float matching_coefficient_similarity_custom(const char *str1, const char *str2, cost_t *cost) {
+const float matching_coefficient_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
 
-	UT_array *tm1 = tokenize_to_utarray(str1, cost->tok_str);
-	UT_array *tm2 = tokenize_to_utarray(str2, cost->tok_str);
+	UT_array *tm1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
+	UT_array *tm2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
 
 	const int tot_p = MAX(utarray_len(tm1), utarray_len(tm2));
 
-	const float ret = matching_coefficient_custom(str1, str2, cost) / (const float) tot_p;
+	const float ret = matching_coefficient_custom(str1, str2, tokenizer) / (const float) tot_p;
 
 	utarray_free(tm1);
 	utarray_free(tm2);
@@ -76,14 +76,13 @@ const float matching_coefficient_similarity_custom(const char *str1, const char 
 
 const float matching_coefficient_similarity(const char *str1, const char *str2) {
 
-	cost_t cost = {
-			.max_cost = 0,
-			.min_cost = 0,
-			.gap_cost = 0,
-			.tok_str = WHITESPACE_DELIMITERS
+	std_tokenizer_t tokenizer = {
+			.delimiters = WHITESPACE_DELIMITERS,
+			.tok_utarr_func = &tokenize_to_utarray,
+			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return matching_coefficient_similarity_custom(str1, str2, &cost);
+	return matching_coefficient_similarity_custom(str1, str2, &tokenizer);
 
 }
 

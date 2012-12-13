@@ -8,19 +8,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <stdbool.h>
 #include "cost.h"
 #include "uthash.h"
 #include "utarray.h"
 #include "tokenizer.h"
 #include "euclidean_distance.h"
 
-const float euclidean_distance_custom(const char *str1, const char *str2, cost_t *cost) {
+const float euclidean_distance_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
 
-	UT_array *t1 = tokenize_to_utarray(str1, cost->tok_str);
-	UT_array *t2 = tokenize_to_utarray(str2, cost->tok_str);
+	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
+	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
 
-	hash_token_t *h1 = uq_tokenize_to_hash(str1, cost->tok_str);
-	hash_token_t *h2 = uq_tokenize_to_hash(str2, cost->tok_str);
+	hash_token_t *h1 = tokenizer->tok_uq_hash_func(str1, tokenizer->delimiters);
+	hash_token_t *h2 = tokenizer->tok_uq_hash_func(str2, tokenizer->delimiters);
 
 	hash_token_t *all = merge_tokens(h1, h2);
 	hash_token_t *s;
@@ -66,25 +67,24 @@ const float euclidean_distance_custom(const char *str1, const char *str2, cost_t
 
 const float euclidean_distance(const char *str1, const char *str2) {
 
-	cost_t cost = {
-			.max_cost = 0,
-			.min_cost = 0,
-			.gap_cost = 0,
-			.tok_str = WHITESPACE_DELIMITERS
+	std_tokenizer_t tokenizer = {
+			.delimiters = WHITESPACE_DELIMITERS,
+			.tok_utarr_func = &tokenize_to_utarray,
+			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return euclidean_distance_custom(str1, str2, &cost);
+	return euclidean_distance_custom(str1, str2, &tokenizer);
 
 }
 
-const float euclidean_distance_similarity_custom(const char *str1, const char *str2, cost_t * cost) {
+const float euclidean_distance_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
 
-	UT_array *tokarr1 = tokenize_to_utarray(str1, cost->tok_str);
-	UT_array *tokarr2 = tokenize_to_utarray(str2, cost->tok_str);
+	UT_array *tokarr1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
+	UT_array *tokarr2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
 
 	const float tl1 = utarray_len(tokarr1), tl2 = utarray_len(tokarr2);
 	const float tp = sqrtf((tl1 * tl1) + (tl2 * tl2));
-	const float td = euclidean_distance_custom(str1, str2, cost);
+	const float td = euclidean_distance_custom(str1, str2, tokenizer);
 
 	utarray_free(tokarr1);
 	utarray_free(tokarr2);
@@ -95,13 +95,12 @@ const float euclidean_distance_similarity_custom(const char *str1, const char *s
 
 const float euclidean_distance_similarity(const char *str1, const char *str2) {
 
-	cost_t cost = {
-			.max_cost = 0,
-			.min_cost = 0,
-			.gap_cost = 0,
-			.tok_str = WHITESPACE_DELIMITERS
+	std_tokenizer_t tokenizer = {
+			.delimiters = WHITESPACE_DELIMITERS,
+			.tok_utarr_func = &tokenize_to_utarray,
+			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return euclidean_distance_similarity_custom(str1, str2, &cost);
+	return euclidean_distance_similarity_custom(str1, str2, &tokenizer);
 
 }

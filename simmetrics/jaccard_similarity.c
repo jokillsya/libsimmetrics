@@ -8,16 +8,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <stdbool.h>
 #include "cost.h"
 #include "uthash.h"
 #include "utarray.h"
 #include "tokenizer.h"
 #include "jaccard_similarity.h"
 
-const float jaccard_similarity_custom(const char *str1, const char *str2, cost_t *cost) {
+const float jaccard_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
 
-	hash_token_t *h1 = uq_tokenize_to_hash(str1, cost->tok_str);
-	hash_token_t *h2 = uq_tokenize_to_hash(str2, cost->tok_str);
+	hash_token_t *h1 = tokenizer->tok_uq_hash_func(str1, tokenizer->delimiters);
+	hash_token_t *h2 = tokenizer->tok_uq_hash_func(str2, tokenizer->delimiters);
 
 	hash_token_t *all = merge_tokens(h1, h2);
 
@@ -36,14 +37,14 @@ const float jaccard_similarity_custom(const char *str1, const char *str2, cost_t
 
 const float jaccard_similarity(const char *str1, const char *str2) {
 
-	cost_t cost = {
-			.max_cost = 0,
-			.min_cost = 0,
-			.gap_cost = 0,
-			.tok_str = WHITESPACE_DELIMITERS
+	std_tokenizer_t tokenizer = {
+			.delimiters = WHITESPACE_DELIMITERS,
+			.tok_utarr_func = &tokenize_to_utarray,
+			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return jaccard_similarity_custom(str1, str2, &cost);
+
+	return jaccard_similarity_custom(str1, str2, &tokenizer);
 
 }
 
