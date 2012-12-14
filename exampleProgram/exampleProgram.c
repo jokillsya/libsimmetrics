@@ -8,17 +8,15 @@
 #include "tokenizer.h"
 #include "qgrams_distance.h"
 
-int main(void) {
+int main(void)
+{
 
 	int i;
-	const char *str1 = "aaa BBB ccc DDD eee FFF ggg";
-	const char *str2 = "AAA bbb CCC ddd EEE fff GGG";
+	const char *str1 = "Johnathan2";
+	const char *str2 = "Johnathan1";
 
-	for (i = 0; i < 1000000; i++) {
+	printf("D :: %f\n", qgrams_distance_similarity(str1, str2));
 
-		qgrams_distance_similarity(str1, str2);
-
-	}
 	return EXIT_SUCCESS;
 
 }

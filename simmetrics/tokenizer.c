@@ -64,7 +64,7 @@ dl_token_t *qgram_tokenize_to_dllist(const char *str, const qgram_t *qtype) {
 	char *tmp;
 
 	//Mem corruption will occur otherwise...
-	if(qtype->qgram_len >= ((init_len - 1) / 2))
+	if(qtype->qgram_len < 1 || qtype->qgram_len > 3)
 		return NULL;
 
 	if(qtype->extended) {
@@ -119,7 +119,7 @@ hash_token_t *qgram_uq_tokenize_to_hash(const char *str, const qgram_t *qtype) {
 	char *tmp;
 
 	//Mem corruption will occur otherwise...
-	if(qtype->qgram_len >= ((init_len - 1) / 2))
+	if(qtype->qgram_len < 1 || qtype->qgram_len > 3)
 		return NULL;
 
 	if(qtype->extended) {
@@ -187,7 +187,7 @@ UT_array *qgram_tokenize_to_utarray(const char *str, const qgram_t *qtype) {
 	char *tmp;
 
 	//Mem corruption will occur otherwise...
-	if(qtype->qgram_len >= ((init_len - 1) / 2))
+	if(qtype->qgram_len < 1 || qtype->qgram_len > 3)
 		return NULL;
 
 	if(qtype->extended) {
