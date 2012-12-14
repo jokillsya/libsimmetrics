@@ -11,7 +11,6 @@
 int main(void)
 {
 
-	int i;
 	const char *str1 = "Johnathan2";
 	const char *str2 = "Johnathan1";
 
