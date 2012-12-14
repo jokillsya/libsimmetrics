@@ -1,4 +1,6 @@
 /*
+ * * Copyright (C) 2012 Johnathan Botha et al. All rights reserved.
+ *
  * This file is part of libsimmetrics
  *
  * libsimmetrics is the C port of the Java project called Simmetrics,
