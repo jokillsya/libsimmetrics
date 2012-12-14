@@ -1,6 +1,6 @@
 This is a C port of the Simmetrics project.
 
-SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtein, Gotoh, Jaro etc) to other metrics, (e.g Soundex, Levenshtein).
+SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtein, Gotoh, Jaro etc) to other metrics, (e.g Soundex, QGrams).
 
 The code was ported from https://github.com/Simmetrics/simmetrics
 
