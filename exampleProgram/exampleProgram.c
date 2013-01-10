@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <libgen.h>.
+#include <libgen.h>
 #include "utlist.h"
 #include "utarray.h"
 #include "uthash.h"
