@@ -103,7 +103,8 @@ static float _sub_cost_5_3_min_3(const char * str1, const int str1_idx, const ch
 		char c2 = tolower(str2[str2_idx]);
 
 		for (i = 0; i < 7; i++) {
-			if ((strchr(APPROX[i], c1) != NULL )&& (strchr(APPROX[i], c2) != NULL))return CHR_APR_SCORE;
+			if ((strchr(APPROX[i], c1) != NULL ) && (strchr(APPROX[i], c2) != NULL))
+				return CHR_APR_SCORE;
 		}
 
 		return CHR_MIS_SCORE ;
