@@ -4,6 +4,10 @@ Makefile
 *.Po
 config.log
 config.status
+config.cache
+config.log
+configure.lineno
+config.status.lineno
 *.o
 *.lo
 *.la

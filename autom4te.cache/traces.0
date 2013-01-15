@@ -2476,12 +2476,12 @@ m4trace:configure.ac:23: -1- _m4_warn([obsolete], [The macro `AC_PROG_LIBTOOL' i
 You should run autoupdate.], [/usr/local/share/aclocal/libtool.m4:107: AC_PROG_LIBTOOL is expanded from...
 configure.ac:23: the top level])
 m4trace:configure.ac:23: -1- LT_INIT
-m4trace:configure.ac:29: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:29: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:29: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
-m4trace:configure.ac:29: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
-m4trace:configure.ac:29: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
-m4trace:configure.ac:29: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
-m4trace:configure.ac:29: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
-m4trace:configure.ac:29: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
-m4trace:configure.ac:29: -1- _LT_PROG_LTMAIN
+m4trace:configure.ac:31: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:31: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
+m4trace:configure.ac:31: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
+m4trace:configure.ac:31: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
+m4trace:configure.ac:31: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
+m4trace:configure.ac:31: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:31: -1- _LT_PROG_LTMAIN
