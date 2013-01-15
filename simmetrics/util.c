@@ -78,6 +78,7 @@ unsigned int str_hash(const char *s) {
 
 }
 
+#ifdef _WIN32
 char * strtok_r(s, delim, last)
 	register char *s; register const char *delim; char **last; {
 	register char *spanp;
@@ -123,4 +124,5 @@ char * strtok_r(s, delim, last)
 	/* NOTREACHED */
 	return NULL ;
 }
+#endif
 
