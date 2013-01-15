@@ -26,10 +26,11 @@
  *      Author: Johnathan Botha <jokillsya@gmail.com>
  */
 
-#include <string.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
+#include "util.h"
 #include "uthash.h"
 #include "utarray.h"
 #include "cost.h"

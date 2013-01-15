@@ -190,10 +190,10 @@ float smith_waterman_gotoh_similarity(const char *str1, const char *str2) {
 			.comp_conf = &comp_cost
 	};
 
+	ret = custom_smith_waterman_gotoh_similarity(str1, str2, &conf);
+
 	free_affine_sub_cost(aff_idx_c);
 	free_sub_cost(sub_cost);
-
-	ret = custom_smith_waterman_gotoh_similarity(str1, str2, &conf);
 
 	return ret;
 
