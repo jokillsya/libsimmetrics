@@ -24,6 +24,8 @@ dnl Check if Libtool is present
 dnl Libtool is used for building share libraries 
 AC_PROG_LIBTOOL
 
+AC_CONFIG_MACRO_DIR([m4])
+
 AC_CONFIG_FILES(Makefile
                 exampleProgram/Makefile
                 simmetrics/Makefile
