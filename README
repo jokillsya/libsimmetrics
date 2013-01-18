@@ -4,4 +4,8 @@ SimMetrics is a Similarity Metric Library, e.g. from edit distance's (Levenshtei
 
 The code was ported from https://github.com/Simmetrics/simmetrics
 
+This project however has advanced beyond the scope of the original Java project and can be considered the better API.
+
+If you have trouble compiling the code the usual way, just run ./bootstrap.sh --> it should sort you out...
+
 Most of the functions return floating points and can be customized.
