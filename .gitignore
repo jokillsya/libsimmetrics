@@ -12,4 +12,7 @@ config.status.lineno
 *.lo
 *.la
 *.libs/
+autom4te.cache/
 exampleProgram/exampleProgram
+*stackdump*
+*.exe
