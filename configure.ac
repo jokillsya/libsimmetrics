@@ -6,6 +6,8 @@ AC_PROG_CC
 
 AC_CANONICAL_SYSTEM
 
+AC_CONFIG_MACRO_DIR([m4])
+
 dnl Initialize automake
 AM_INIT_AUTOMAKE
 

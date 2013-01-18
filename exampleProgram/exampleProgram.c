@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <libgen.h>.
+#include <libgen.h>
 #include "utlist.h"
 #include "utarray.h"
 #include "uthash.h"
@@ -25,10 +25,11 @@
 #include "smith_waterman.h"
 #include "smith_waterman_gotoh.h"
 #include "soundex.h"
+#include "metaphone.h"
 
-const int SIMMETC = 31;
+const int SIMMETC = 33;
 
-const char *SIMMETS[31] = {"block","block_distance","cos","cosine","dice","eucli","euclidean_distance","jac","jaccard","jar","jaro","wink","jaro_winkler","leven","levenshtein","match","matching_coefficient","monge","monge_elkan","need","needleman_wunch","ol","overlap_coefficient","qg","qgrams_distance","smith","smith_waterman","gotoh","smith_waterman_gotoh","snd","soundex"};
+const char *SIMMETS[33] = {"block","block_distance","cos","cosine","dice","eucli","euclidean_distance","jac","jaccard","jar","jaro","wink","jaro_winkler","leven","levenshtein","match","matching_coefficient","monge","monge_elkan","need","needleman_wunch","ol","overlap_coefficient","qg","qgrams_distance","smith","smith_waterman","gotoh","smith_waterman_gotoh","snd","soundex", "meta", "metaphone"};
 
 int which_type(char *simtype) 
 {
@@ -57,8 +58,8 @@ int main(int argc, char *argv[])
     }
     else 
     {
-        float similarity;
-
+        float similarity = 0;
+        const char *meta;
     	switch (which_type(argv[1])) {
             case 0:
             case 1:
@@ -123,6 +124,10 @@ int main(int argc, char *argv[])
             case 30:
                 similarity = soundex_similarity(argv[2], argv[3]);
                 break;
+            case 31:
+            case 32:
+            	similarity = metaphone_similarity(argv[2], argv[3]);
+            	break;
     	default:
     	   printf("Unknown SimMetric %s, not found.", argv[1]);
     	   return 1;

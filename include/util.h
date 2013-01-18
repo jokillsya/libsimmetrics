@@ -37,5 +37,9 @@
 #define MAX4(a, b, c, d) (MAX(MAX3(a, b, c), d))
 
 unsigned int str_hash(const char *s);
+#ifdef _WIN32
+//Custom implementation to make Mingw happy...
+char * strtok_r(char *s, const char *delim, char **last);
+#endif
 
 #endif /* BIT_UTIL_H_ */
