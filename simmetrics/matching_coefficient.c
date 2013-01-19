@@ -37,7 +37,7 @@
 #include "tokenizer.h"
 #include "matching_coefficient.h"
 
-const float matching_coefficient_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float matching_coefficient_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
 
 	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
 	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
@@ -63,11 +63,11 @@ const float matching_coefficient_custom(const char *str1, const char *str2, std_
 	utarray_free(t1);
 	utarray_free(t2);
 
-	return (const float) tf;
+	return (float) tf;
 
 }
 
-const float matching_coefficient(const char *str1, const char *str2) {
+float matching_coefficient(const char *str1, const char *str2) {
 
 	std_tokenizer_t tokenizer = {
 			.delimiters = WHITESPACE_DELIMITERS,
@@ -79,14 +79,14 @@ const float matching_coefficient(const char *str1, const char *str2) {
 
 }
 
-const float matching_coefficient_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float matching_coefficient_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
 
 	UT_array *tm1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
 	UT_array *tm2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
 
 	const int tot_p = MAX(utarray_len(tm1), utarray_len(tm2));
 
-	const float ret = matching_coefficient_custom(str1, str2, tokenizer) / (const float) tot_p;
+	float ret = matching_coefficient_custom(str1, str2, tokenizer) / (float) tot_p;
 
 	utarray_free(tm1);
 	utarray_free(tm2);
@@ -95,7 +95,7 @@ const float matching_coefficient_similarity_custom(const char *str1, const char 
 
 }
 
-const float matching_coefficient_similarity(const char *str1, const char *str2) {
+float matching_coefficient_similarity(const char *str1, const char *str2) {
 
 	std_tokenizer_t tokenizer = {
 			.delimiters = WHITESPACE_DELIMITERS,
