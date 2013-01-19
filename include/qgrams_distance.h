@@ -29,8 +29,8 @@
 #ifndef QGRAMS_DISTANCE_H_
 #define QGRAMS_DISTANCE_H_
 
-float qgrams_distance_custom(const char *str1, const char *str2, qgram_tokenizer_t *tokenizer);
-float qgrams_distance(const char *str1, const char *str2);
+int qgrams_distance_custom(const char *str1, const char *str2, qgram_tokenizer_t *tokenizer);
+int qgrams_distance(const char *str1, const char *str2);
 float qgrams_distance_similarity_custom(const char *str1, const char *str2, qgram_tokenizer_t *tokenizer);
 float qgrams_distance_similarity(const char *str1, const char *str2);
 

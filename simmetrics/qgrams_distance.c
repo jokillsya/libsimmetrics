@@ -36,7 +36,7 @@
 #include "tokenizer.h"
 #include "qgrams_distance.h"
 
-float qgrams_distance_custom(const char *str1, const char *str2, qgram_tokenizer_t *tokenizer) {
+int qgrams_distance_custom(const char *str1, const char *str2, qgram_tokenizer_t *tokenizer) {
 
 	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->qgram);
 	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->qgram);
@@ -47,8 +47,7 @@ float qgrams_distance_custom(const char *str1, const char *str2, qgram_tokenizer
 	hash_token_t *all = merge_tokens(h1, h2);
 	hash_token_t *s;
 
-	int cs1, cs2;
-	float td = 0;
+	int cs1, cs2, td = 0;
 
 	char **tmp;
 
@@ -85,11 +84,11 @@ float qgrams_distance_custom(const char *str1, const char *str2, qgram_tokenizer
 	hash_token_free(h2);
 	hash_token_free(all);
 
-	return (float)td;
+	return td;
 
 }
 
-float qgrams_distance(const char *str1, const char *str2) {
+int qgrams_distance(const char *str1, const char *str2) {
 
 	qgram_t type = { .qgram_len = QGRAM_3, .extended = true };
 
@@ -118,7 +117,7 @@ float qgrams_distance_similarity_custom(const char *str1, const char *str2, qgra
 	if(m == 0)
 		ret = 0;
 	else
-		ret = (m - qgrams_distance_custom(str1, str2, tokenizer)) / m;
+		ret = ((float)m - (float)qgrams_distance_custom(str1, str2, tokenizer)) / (float)m;
 
 	utarray_free(tm1);
 	utarray_free(tm2);
