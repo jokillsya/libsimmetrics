@@ -294,10 +294,9 @@ char *excpPAIR = "AGKPW", /* exceptions "ae-", "gn-", "kn-", "pn-", "wr-" */
 *nextLTR = "ENNNR";
 char *chrptr, *chrptr1;
 
-const char *metaphone(str, metalen)
-	const char *str; int metalen; {
+char *metaphone(const char *str) {
 
-	int ii, jj, silent, hard, Lng, lastChr;
+	int ii, jj, silent, hard, Lng, lastChr, metalen = MAX_MLEN;
 
 	char curLtr, prevLtr, nextLtr, nextLtr2, nextLtr3;
 
@@ -543,8 +542,8 @@ const char *metaphone(str, metalen)
 
 float metaphone_similarity(const char *str1, const char *str2) {
 
-	const char *s1 = metaphone(str1, MAX_MLEN);
-	const char *s2 = metaphone(str2, MAX_MLEN);
+	char *s1 = metaphone(str1);
+	char *s2 = metaphone(str2);
 
 	float res = jaro_winkler_similarity(s1, s2);
 
