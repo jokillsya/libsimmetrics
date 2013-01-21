@@ -16,6 +16,7 @@ aclocal.m4
 compile
 install-sh
 ltmain.sh
+missing
 m4/
 *.o
 *.lo
