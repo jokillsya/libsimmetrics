@@ -36,7 +36,9 @@
 #include "tokenizer.h"
 #include "qgrams_distance.h"
 
-const float qgrams_distance_custom(const char *str1, const char *str2, qgram_tokenizer_t *tokenizer) {
+int qgrams_distance_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const qgram_tokenizer_t *tokenizer = v_tokenizer;
 
 	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->qgram);
 	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->qgram);
@@ -47,8 +49,7 @@ const float qgrams_distance_custom(const char *str1, const char *str2, qgram_tok
 	hash_token_t *all = merge_tokens(h1, h2);
 	hash_token_t *s;
 
-	int cs1, cs2;
-	float td = 0;
+	int cs1, cs2, td = 0;
 
 	char **tmp;
 
@@ -85,11 +86,11 @@ const float qgrams_distance_custom(const char *str1, const char *str2, qgram_tok
 	hash_token_free(h2);
 	hash_token_free(all);
 
-	return (float)td;
+	return td;
 
 }
 
-const float qgrams_distance(const char *str1, const char *str2) {
+int qgrams_distance(const char *str1, const char *str2) {
 
 	qgram_t type = { .qgram_len = QGRAM_3, .extended = true };
 
@@ -103,7 +104,10 @@ const float qgrams_distance(const char *str1, const char *str2) {
 
 }
 
-const float qgrams_distance_similarity_custom(const char *str1, const char *str2, qgram_tokenizer_t *tokenizer) {
+float qgrams_distance_similarity_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const qgram_tokenizer_t *tokenizer = v_tokenizer;
+
 
 	UT_array *tm1 = tokenizer->tok_utarr_func(str1, tokenizer->qgram);
 	UT_array *tm2 = tokenizer->tok_utarr_func(str2, tokenizer->qgram);
@@ -118,16 +122,16 @@ const float qgrams_distance_similarity_custom(const char *str1, const char *str2
 	if(m == 0)
 		ret = 0;
 	else
-		ret = (m - qgrams_distance_custom(str1, str2, tokenizer)) / m;
+		ret = ((float)m - (float)qgrams_distance_custom(str1, str2, tokenizer)) / (float)m;
 
 	utarray_free(tm1);
 	utarray_free(tm2);
 
-	return (const float) ret;
+	return ret;
 
 }
 
-const float qgrams_distance_similarity(const char *str1, const char *str2) {
+float qgrams_distance_similarity(const char *str1, const char *str2) {
 
 	qgram_t type = { .qgram_len = QGRAM_3, .extended = true };
 

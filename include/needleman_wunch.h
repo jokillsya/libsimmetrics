@@ -29,9 +29,9 @@
 #ifndef NEEDLEMAN_WUNCH_H_
 #define NEEDLEMAN_WUNCH_H_
 
-float custom_needleman_wunch(const char *str1, const char *str2, sub_cost_t *conf);
+float needleman_wunch_custom(const char *str1, const char *str2, const void *v_conf);
 float needleman_wunch(const char *str1, const char *str2);
-float custom_needleman_wunch_similarity(const char *str1, const char *str2, sub_cost_t *conf);
+float needleman_wunch_similarity_custom(const char *str1, const char *str2, const void *v_conf);
 float needleman_wunch_similarity(const char *str1, const char *str2);
 
 #endif /* NEEDLEMAN_WUNCH_H_ */

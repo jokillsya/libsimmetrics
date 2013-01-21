@@ -30,9 +30,57 @@
 
 typedef union {
 
-	float (*custom_metric_func) (const char *, const char *, const void *);
-	float (*metric_func) (const char *, const char *);
+	float (*custom_metric) (const char *, const char *, const void *);
+	float (*metric) (const char *, const char *);
 
 } metric_function_t;
 
-#endif
+typedef union {
+
+	float (*custom_similarity) (const char *, const char *, const void *);
+	float (*similarity) (const char *, const char *);
+
+} similarity_function_t;
+
+typedef union {
+
+	int (*custom_distance) (const char *, const char *, const void *);
+	int (*distance) (const char *, const char *);
+
+} distance_function_t;
+
+typedef union {
+
+	char *(*normalize) (const char *);
+
+} normalize_function_t;
+
+distance_function_t* smc_block_distance();
+similarity_function_t* smc_block_distance_similarity();
+similarity_function_t* smc_cosine_similarity();
+similarity_function_t* smc_dice_similarity();
+metric_function_t* smc_euclidean_distance();
+similarity_function_t* smc_euclidean_distance_similarity();
+similarity_function_t* smc_jaccard_similarity();
+similarity_function_t* smc_jaro_similarity();
+similarity_function_t* smc_jaro_winkler_similarity();
+distance_function_t* smc_levenshtein();
+similarity_function_t* smc_levenshtein_similarity();
+metric_function_t* smc_matching_coefficient();
+similarity_function_t* smc_matching_coefficient_similarity();
+normalize_function_t* smc_metaphone();
+similarity_function_t* smc_metaphone_similarity();
+similarity_function_t* smc_monge_elkan_similarity();
+metric_function_t* smc_needleman_wunch();
+similarity_function_t* smc_needleman_wunch_similarity();
+similarity_function_t* smc_overlap_coefficient_similarity();
+distance_function_t* smc_qgrams_distance();
+similarity_function_t* smc_qgrams_distance_similarity();
+metric_function_t* smc_smith_waterman();
+similarity_function_t* smc_smith_waterman_similarity();
+metric_function_t* smc_smith_waterman_gotoh();
+similarity_function_t* smc_smith_waterman_gotoh_similarity();
+normalize_function_t* smc_soundex();
+similarity_function_t* smc_soundex_similarity();
+
+#endif /* libsimmetrics_H */

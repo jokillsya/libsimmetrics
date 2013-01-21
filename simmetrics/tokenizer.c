@@ -64,7 +64,7 @@ dl_token_t *tokenize_to_dllist(const char *str, const char *delimiters) {
 
 	while(tok != NULL) {
 
-		el = (dl_token_t *)malloc(sizeof(dl_token_t));
+		el = malloc(sizeof(dl_token_t));
 		el->token = strdup(tok);
 		DL_APPEND(r, el);
 		tok = strtok(NULL, delimiters);
@@ -117,7 +117,7 @@ dl_token_t *qgram_tokenize_to_dllist(const char *str, const qgram_t *qtype) {
 	while(cp < len) {
 
 		t_ptr = (char *)&tmp[cp];
-		el = (dl_token_t *)malloc(sizeof(dl_token_t));
+		el = malloc(sizeof(dl_token_t));
 		//Allocate all chars - plus terminator...
 		el->token = calloc((qtype->qgram_len + 1), sizeof(char));
 		//Copy bytes safely - strncpy should append the \0

@@ -44,7 +44,7 @@
 
 # define min(x, y) ((x) < (y) ? (x) : (y))
 
-unsigned int levenshtein(const char *str1, const char *str2) {
+int levenshtein(const char *str1, const char *str2) {
 	size_t len1 = strlen(str1), len2 = strlen(str2);
 	unsigned int *v = calloc(len2 + 1, sizeof(unsigned int));
 	unsigned int i, j, current, next, cost;

@@ -33,7 +33,9 @@
 #include "cost.h"
 #include "smith_waterman_gotoh.h"
 
-float custom_smith_waterman_gotoh(const char *str1, const char *str2, const w_comp_idx_cost_t *conf) {
+float smith_waterman_gotoh_custom(const char *str1, const char *str2, const void *v_conf) {
+
+	const w_comp_idx_cost_t *conf = v_conf;
 
 	float cost;
 	float max_so_far = 0;
@@ -147,15 +149,15 @@ float smith_waterman_gotoh(const char *str1, const char *str2) {
 			.comp_conf = &comp_cost
 	};
 
-	return custom_smith_waterman_gotoh(str1, str2, &conf);
+	return smith_waterman_gotoh_custom(str1, str2, &conf);
 
 }
 
-float custom_smith_waterman_gotoh_similarity(const char *str1, const char *str2, const void *v_conf) {
+float smith_waterman_gotoh_similarity_custom(const char *str1, const char *str2, const void *v_conf) {
 
 	const w_comp_idx_cost_t *conf = v_conf;
 
-	float sw_gotoh = custom_smith_waterman_gotoh(str1, str2, conf);
+	float sw_gotoh = smith_waterman_gotoh_custom(str1, str2, conf);
 	float max_value = MIN((float)strlen(str1), (float)strlen(str2));
 	float ret;
 
@@ -190,7 +192,7 @@ float smith_waterman_gotoh_similarity(const char *str1, const char *str2) {
 			.comp_conf = &comp_cost
 	};
 
-	ret = custom_smith_waterman_gotoh_similarity(str1, str2, &conf);
+	ret = smith_waterman_gotoh_similarity_custom(str1, str2, &conf);
 
 	free_affine_sub_cost(aff_idx_c);
 	free_sub_cost(sub_cost);

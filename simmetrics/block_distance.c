@@ -34,7 +34,9 @@
 #include "uthash.h"
 #include "tokenizer.h"
 
-int block_distance_custom(const char * str1, const char *str2, std_tokenizer_t *tokenizer) {
+int block_distance_custom(const char * str1, const char *str2, const void *v_tokenizer) {
+
+	const std_tokenizer_t *tokenizer = v_tokenizer;
 
 	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
 	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
@@ -98,7 +100,9 @@ int block_distance(const char * str1, const char *str2) {
 
 }
 
-float block_distance_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float block_distance_similarity_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const std_tokenizer_t *tokenizer = v_tokenizer;
 
 	UT_array *strs1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
 	UT_array *strs2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
