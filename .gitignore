@@ -3,6 +3,8 @@ libtool
 Makefile
 *.Po
 depcomp
+config.guess
+config.sub
 config.log
 config.status
 config.cache
