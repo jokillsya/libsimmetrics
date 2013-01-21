@@ -1,6 +1,6 @@
 #! /bin/sh
 # On MAC OS X, GNU libtoolize is named 'glibtoolize':
-if [ `(uname -s) 2>/dev/null` == 'Darwin' ]
+if [ `uname 2>/dev/null` == 'Darwin' ]
 then
  glibtoolize
 else
