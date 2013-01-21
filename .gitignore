@@ -13,6 +13,9 @@ configure.lineno
 config.status.lineno
 configure
 aclocal.m4
+compile
+install-sh
+ltmain.sh
 m4/
 *.o
 *.lo
