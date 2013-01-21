@@ -36,7 +36,9 @@
 #include "tokenizer.h"
 #include "euclidean_distance.h"
 
-float euclidean_distance_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float euclidean_distance_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const std_tokenizer_t *tokenizer = v_tokenizer;
 
 	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
 	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
@@ -98,7 +100,9 @@ float euclidean_distance(const char *str1, const char *str2) {
 
 }
 
-float euclidean_distance_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float euclidean_distance_similarity_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const std_tokenizer_t *tokenizer = v_tokenizer;
 
 	UT_array *tokarr1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
 	UT_array *tokarr2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);

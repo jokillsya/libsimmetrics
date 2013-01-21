@@ -29,7 +29,7 @@
 #ifndef OVERLAP_COEFFICIENT_H_
 #define OVERLAP_COEFFICIENT_H_
 
-float overlap_coefficient_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer);
+float overlap_coefficient_similarity_custom(const char *str1, const char *str2, const void *v_tokenizer);
 float overlap_coefficient_similarity(const char *str1, const char *str2);
 
 

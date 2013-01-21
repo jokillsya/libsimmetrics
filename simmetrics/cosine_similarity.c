@@ -35,7 +35,9 @@
 #include "utarray.h"
 #include "tokenizer.h"
 
-const float cosine_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float cosine_similarity_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const std_tokenizer_t *tokenizer = v_tokenizer;
 
 	hash_token_t *h1 = tokenizer->tok_uq_hash_func(str1, tokenizer->delimiters);
 	hash_token_t *h2 = tokenizer->tok_uq_hash_func(str2, tokenizer->delimiters);
@@ -55,7 +57,7 @@ const float cosine_similarity_custom(const char *str1, const char *str2, std_tok
 
 }
 
-const float cosine_similarity(const char *str1, const char *str2) {
+float cosine_similarity(const char *str1, const char *str2) {
 
 	std_tokenizer_t tokenizer = {
 			.delimiters = WHITESPACE_DELIMITERS,

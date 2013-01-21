@@ -32,7 +32,9 @@
 #include "util.h"
 #include "smith_waterman.h"
 
-float custom_smith_waterman(const char *str1, const char *str2, sub_cost_t *sub_cost) {
+float smith_waterman_custom(const char *str1, const char *str2, const void *v_conf) {
+
+	const sub_cost_t *sub_cost = v_conf;
 
 	float cost;
 	float max_so_far = (float) 0;
@@ -95,13 +97,15 @@ float custom_smith_waterman(const char *str1, const char *str2, sub_cost_t *sub_
 
 float smith_waterman(const char *str1, const char *str2) {
 
-	return custom_smith_waterman(str1, str2, sub_cost_1_min_2());
+	return smith_waterman_custom(str1, str2, sub_cost_1_min_2());
 
 }
 
-float custom_smith_waterman_similarity(const char *str1, const char *str2, sub_cost_t *sub_cost) {
+float smith_waterman_similarity_custom(const char *str1, const char *str2, const void *v_conf) {
 
-	float sw = custom_smith_waterman(str1, str2, sub_cost);
+	const sub_cost_t *sub_cost = v_conf;
+
+	float sw = smith_waterman_custom(str1, str2, sub_cost);
 	float max_val = MIN(strlen(str1), strlen(str2));
 	float ret;
 
@@ -121,6 +125,6 @@ float custom_smith_waterman_similarity(const char *str1, const char *str2, sub_c
 
 float smith_waterman_similarity(const char *str1, const char *str2) {
 
-	return custom_smith_waterman_similarity(str1, str2, sub_cost_1_min_2());
+	return smith_waterman_similarity_custom(str1, str2, sub_cost_1_min_2());
 
 }

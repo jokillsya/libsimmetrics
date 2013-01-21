@@ -36,7 +36,10 @@
 #include "tokenizer.h"
 #include "overlap_coefficient.h"
 
-float overlap_coefficient_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float overlap_coefficient_similarity_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const std_tokenizer_t *tokenizer = v_tokenizer;
+
 
 	hash_token_t *h1 = tokenizer->tok_uq_hash_func(str1, tokenizer->delimiters);
 	hash_token_t *h2 = tokenizer->tok_uq_hash_func(str2, tokenizer->delimiters);
