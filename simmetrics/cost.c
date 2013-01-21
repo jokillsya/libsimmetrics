@@ -115,8 +115,8 @@ static float _sub_cost_5_3_min_3(const char * str1, const int str1_idx, const ch
 
 affine_idx_cost_t* affine_gap_1_over_3() {
 
-	cost_t *cost = (cost_t*) malloc(sizeof(cost_t));
-	affine_idx_cost_t *sub_cost = (affine_idx_cost_t*) malloc(sizeof(affine_idx_cost_t));
+	cost_t *cost = malloc(sizeof(cost_t));
+	affine_idx_cost_t *sub_cost = malloc(sizeof(affine_idx_cost_t));
 
 	cost->max_cost = 1;
 	cost->min_cost = 0;
@@ -131,8 +131,8 @@ affine_idx_cost_t* affine_gap_1_over_3() {
 
 affine_idx_cost_t* affine_gap_5_1() {
 
-	cost_t *cost = (cost_t*) malloc(sizeof(cost_t));
-	affine_idx_cost_t *sub_cost = (affine_idx_cost_t*) malloc(sizeof(affine_idx_cost_t));
+	cost_t *cost = malloc(sizeof(cost_t));
+	affine_idx_cost_t *sub_cost = malloc(sizeof(affine_idx_cost_t));
 
 	cost->max_cost = 5;
 	cost->min_cost = 0;
@@ -147,8 +147,8 @@ affine_idx_cost_t* affine_gap_5_1() {
 
 sub_cost_t* sub_cost_1() {
 
-	cost_t *cost = (cost_t*) malloc(sizeof(cost_t));
-	sub_cost_t *sub_cost = (sub_cost_t*) malloc(sizeof(sub_cost_t));
+	cost_t *cost = malloc(sizeof(cost_t));
+	sub_cost_t *sub_cost = malloc(sizeof(sub_cost_t));
 
 	cost->max_cost = 1;
 	cost->min_cost = 0;
@@ -163,8 +163,8 @@ sub_cost_t* sub_cost_1() {
 
 sub_cost_t* sub_cost_1_min_2() {
 
-	cost_t *cost = (cost_t*) malloc(sizeof(cost_t));
-	sub_cost_t *sub_cost = (sub_cost_t*) malloc(sizeof(sub_cost_t));
+	cost_t *cost = malloc(sizeof(cost_t));
+	sub_cost_t *sub_cost = malloc(sizeof(sub_cost_t));
 
 	cost->max_cost = 1;
 	cost->min_cost = -2;
@@ -178,8 +178,8 @@ sub_cost_t* sub_cost_1_min_2() {
 
 sub_cost_t* sub_cost_5_3_min_3() {
 
-	cost_t *cost = (cost_t*) malloc(sizeof(cost_t));
-	sub_cost_t *sub_cost = (sub_cost_t*) malloc(sizeof(sub_cost_t));
+	cost_t *cost = malloc(sizeof(cost_t));
+	sub_cost_t *sub_cost = malloc(sizeof(sub_cost_t));
 
 	cost->max_cost = 5;
 	cost->min_cost = -3;
