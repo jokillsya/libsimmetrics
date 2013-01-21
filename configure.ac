@@ -31,3 +31,4 @@ AC_CONFIG_FILES(Makefile
                 simmetrics/Makefile
                 include/Makefile)
 AC_OUTPUT
+

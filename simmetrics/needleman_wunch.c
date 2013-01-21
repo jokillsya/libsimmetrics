@@ -31,7 +31,9 @@
 #include "util.h"
 #include "needleman_wunch.h"
 
-float custom_needleman_wunch(const char *str1, const char *str2, sub_cost_t *conf) {
+float needleman_wunch_custom(const char *str1, const char *str2, const void *v_conf) {
+
+	const sub_cost_t *conf = v_conf;
 
 	int n = strlen(str1);
 	int m = strlen(str2);
@@ -71,7 +73,7 @@ float needleman_wunch(const char *str1, const char *str2) {
 	sub_cost_t *sub_cost = sub_cost_1();
 	sub_cost->cost->gap_cost = 2;
 
-	float ret = custom_needleman_wunch(str1, str2, sub_cost);
+	float ret = needleman_wunch_custom(str1, str2, sub_cost);
 
 	free(sub_cost->cost);
 	free(sub_cost);
@@ -80,9 +82,11 @@ float needleman_wunch(const char *str1, const char *str2) {
 
 }
 
-float custom_needleman_wunch_similarity(const char *str1, const char *str2, sub_cost_t *conf) {
+float needleman_wunch_similarity_custom(const char *str1, const char *str2, const void *v_conf) {
 
-	float nw = custom_needleman_wunch(str1, str2, conf);
+	const sub_cost_t *conf = v_conf;
+
+	float nw = needleman_wunch_custom(str1, str2, conf);
 
 	float l1 = ((float)strlen(str1));
 	float l2 = ((float)strlen(str2));
@@ -118,7 +122,7 @@ float needleman_wunch_similarity(const char *str1, const char *str2) {
 	sub_cost_t *sub_cost = sub_cost_1();
 	sub_cost->cost->gap_cost = 2;
 
-	float ret = custom_needleman_wunch_similarity(str1, str2, sub_cost);
+	float ret = needleman_wunch_similarity_custom(str1, str2, sub_cost);
 
 	free(sub_cost->cost);
 	free(sub_cost);

@@ -36,7 +36,9 @@
 #include "tokenizer.h"
 #include "euclidean_distance.h"
 
-const float euclidean_distance_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float euclidean_distance_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const std_tokenizer_t *tokenizer = v_tokenizer;
 
 	UT_array *t1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
 	UT_array *t2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
@@ -86,7 +88,7 @@ const float euclidean_distance_custom(const char *str1, const char *str2, std_to
 
 }
 
-const float euclidean_distance(const char *str1, const char *str2) {
+float euclidean_distance(const char *str1, const char *str2) {
 
 	std_tokenizer_t tokenizer = {
 			.delimiters = WHITESPACE_DELIMITERS,
@@ -98,14 +100,16 @@ const float euclidean_distance(const char *str1, const char *str2) {
 
 }
 
-const float euclidean_distance_similarity_custom(const char *str1, const char *str2, std_tokenizer_t *tokenizer) {
+float euclidean_distance_similarity_custom(const char *str1, const char *str2, const void *v_tokenizer) {
+
+	const std_tokenizer_t *tokenizer = v_tokenizer;
 
 	UT_array *tokarr1 = tokenizer->tok_utarr_func(str1, tokenizer->delimiters);
 	UT_array *tokarr2 = tokenizer->tok_utarr_func(str2, tokenizer->delimiters);
 
-	const float tl1 = utarray_len(tokarr1), tl2 = utarray_len(tokarr2);
-	const float tp = sqrtf((tl1 * tl1) + (tl2 * tl2));
-	const float td = euclidean_distance_custom(str1, str2, tokenizer);
+	float tl1 = utarray_len(tokarr1), tl2 = utarray_len(tokarr2);
+	float tp = sqrtf((tl1 * tl1) + (tl2 * tl2));
+	float td = euclidean_distance_custom(str1, str2, tokenizer);
 
 	utarray_free(tokarr1);
 	utarray_free(tokarr2);
@@ -114,7 +118,7 @@ const float euclidean_distance_similarity_custom(const char *str1, const char *s
 
 }
 
-const float euclidean_distance_similarity(const char *str1, const char *str2) {
+float euclidean_distance_similarity(const char *str1, const char *str2) {
 
 	std_tokenizer_t tokenizer = {
 			.delimiters = WHITESPACE_DELIMITERS,
