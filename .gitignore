@@ -2,6 +2,7 @@ libtool
 *.deps/
 Makefile
 *.Po
+depcomp
 config.log
 config.status
 config.cache
@@ -10,6 +11,7 @@ configure.lineno
 config.status.lineno
 configure
 aclocal.m4
+m4/
 *.o
 *.lo
 *.la
