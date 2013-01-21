@@ -1,12 +1,11 @@
 #! /bin/sh
-
-if hash libtoolize 2>&-
+# On MAC OS X, GNU libtoolize is named 'glibtoolize':
+if [ `(uname -s) 2>/dev/null` == 'Darwin' ]
 then
-  libtoolize --automake
+ glibtoolize
 else
-  glibtoolize --automake
+ libtoolize
 fi
-
 aclocal \
 && automake --gnu --add-missing \
 && autoconf
