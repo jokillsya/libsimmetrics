@@ -34,13 +34,14 @@
 #include "uthash.h"
 #include "utarray.h"
 #include "cost.h"
-#include "simmetrics.h"
 #include "monge_elkan.h"
 #include "smith_waterman_gotoh.h"
 #include "tokenizer.h"
 
-float custom_monge_elkan_similarity(const char *str1, const char *str2, metric_function_t *metric, const void *v_conf, const cost_type_e cost_type, const char *tok_str) {
+float monge_elkan_similarity_custom(const char *str1, const char *str2, const void *v_conf) {
 
+//	cost_type_e cost_type = WIN_COMP_IDX_COST;
+	char *tok_str = WHITESPACE_DELIMITERS;
 	float sum_matches = 0;
 	float max_found;
 	float found = 0;
@@ -61,7 +62,7 @@ float custom_monge_elkan_similarity(const char *str1, const char *str2, metric_f
 
 		for (r = strtok_r(str2_arr, tok_str, &brkb); r; r = strtok_r(NULL, tok_str, &brkb)) {
 
-			found = metric->custom_metric_func(l, r, v_conf);
+			found = smith_waterman_gotoh_similarity_custom(l, r, v_conf);
 
 			if (found > max_found)
 				max_found = found;
@@ -93,10 +94,7 @@ float monge_elkan_similarity(const char *str1, const char *str2) {
 			.comp_conf = &comp_cost
 	};
 
-	metric_function_t metric_func;
-	metric_func.custom_metric_func = &custom_smith_waterman_gotoh_similarity;
-
-	ret = custom_monge_elkan_similarity(str1, str2, &metric_func, &conf, WIN_COMP_IDX_COST, WHITESPACE_DELIMITERS);
+	ret = monge_elkan_similarity_custom(str1, str2, &conf);
 
 	free_affine_sub_cost(aff_idx_c);
 	free_sub_cost(sub_cost);
