@@ -8,10 +8,13 @@ config.cache
 config.log
 configure.lineno
 config.status.lineno
+configure
+aclocal.m4
 *.o
 *.lo
 *.la
 *.libs/
+*.in
 autom4te.cache/
 exampleProgram/exampleProgram
 *stackdump*
