@@ -171,7 +171,7 @@ int main(int argc, char *argv[]) {
                return 1;
         }
 
-        printf("%-31s between %-25s is %25s ", sm_name, compare, metrics);
+        printf("%-31s between %-25s is %12s ", sm_name, compare, metrics);
         printf("and yields a %3.0f%% similarity\n", similarity * 100);
 
         return EXIT_SUCCESS;
