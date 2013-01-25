@@ -149,13 +149,21 @@ int main(int argc, char *argv[]) {
             case 29:
             case 30:
                 sm_name = "Soundex Phonetics";
-                sprintf(metrics, "normalized to %s & %s", soundex(argv[2]), soundex(argv[3]));
+                char *s1 = soundex(argv[2]);
+                char *s2 = soundex(argv[3]);
+                sprintf(metrics, "%s & %s", s1, s2);
+                free(s1);
+                free(s2);
                 similarity = soundex_similarity(argv[2], argv[3]);
                 break;
             case 31:
             case 32:
                 sm_name = "Metaphone Phonetics";
-                sprintf(metrics, "normalized to %s & %s", metaphone(argv[2]), metaphone(argv[3]));
+                char *m1 = metaphone(argv[2]);
+                char *m2 = metaphone(argv[3]);
+                sprintf(metrics, "%s & %s", m1, m2);
+                free(m1);
+                free(m2);
                 similarity = metaphone_similarity(argv[2], argv[3]);
                 break;
             default:
