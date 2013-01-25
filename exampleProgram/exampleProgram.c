@@ -66,13 +66,13 @@ int main(int argc, char *argv[]) {
             case 2:
             case 3:
                 sm_name = "Cosine Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = cosine_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 4:
                 sm_name = "Dice Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = dice_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 5:
             case 6:
@@ -83,20 +83,20 @@ int main(int argc, char *argv[]) {
             case 7:
             case 8:
                 sm_name = "Jaccard Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = jaccard_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 9:
             case 10:
                 sm_name = "Jaro Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = jaro_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 11:
             case 12:
                 sm_name = "Jaro Winkler Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = jaro_winkler_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 13:
             case 14:
@@ -113,8 +113,8 @@ int main(int argc, char *argv[]) {
             case 17:
             case 18:
                 sm_name = "Monge Elkan Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = monge_elkan_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 19:
             case 20:
@@ -125,8 +125,8 @@ int main(int argc, char *argv[]) {
             case 21:
             case 22:
                 sm_name = "Overlap Coefficient Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = overlap_coefficient_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 23:
             case 24:
