@@ -1,31 +1,4 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <libgen.h>
-#include "utlist.h"
-#include "utarray.h"
-#include "uthash.h"
-#include "tokenizer.h"
-#include "qgrams_distance.h"
-#include "block_distance.h"
-#include "cosine_similarity.h"
-#include "dice_similarity.h"
-#include "euclidean_distance.h"
-#include "jaccard_similarity.h"
-#include "jaro.h"
-#include "jaro_winkler.h"
-#include "levenshtein.h"
-#include "matching_coefficient.h"
 #include "simmetrics.h"
-#include "cost.h"
-#include "monge_elkan.h"
-#include "needleman_wunch.h"
-#include "overlap_coefficient.h"
-#include "smith_waterman.h"
-#include "smith_waterman_gotoh.h"
-#include "soundex.h"
-#include "metaphone.h"
 
 const int SIMMETC = 33;
 
@@ -93,13 +66,13 @@ int main(int argc, char *argv[]) {
             case 2:
             case 3:
                 sm_name = "Cosine Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = cosine_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 4:
                 sm_name = "Dice Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = dice_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 5:
             case 6:
@@ -110,20 +83,20 @@ int main(int argc, char *argv[]) {
             case 7:
             case 8:
                 sm_name = "Jaccard Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = jaccard_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 9:
             case 10:
                 sm_name = "Jaro Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = jaro_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 11:
             case 12:
                 sm_name = "Jaro Winkler Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = jaro_winkler_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 13:
             case 14:
@@ -140,8 +113,8 @@ int main(int argc, char *argv[]) {
             case 17:
             case 18:
                 sm_name = "Monge Elkan Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = monge_elkan_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 19:
             case 20:
@@ -152,8 +125,8 @@ int main(int argc, char *argv[]) {
             case 21:
             case 22:
                 sm_name = "Overlap Coefficient Similarity";
-                sprintf(metrics, "not applicable");
                 similarity = overlap_coefficient_similarity(argv[2], argv[3]);
+                sprintf(metrics, "%f", similarity);
                 break;
             case 23:
             case 24:
@@ -176,13 +149,21 @@ int main(int argc, char *argv[]) {
             case 29:
             case 30:
                 sm_name = "Soundex Phonetics";
-                sprintf(metrics, "normalized to %s & %s", soundex(argv[2]), soundex(argv[3]));
+                char *s1 = soundex(argv[2]);
+                char *s2 = soundex(argv[3]);
+                sprintf(metrics, "%s & %s", s1, s2);
+                free(s1);
+                free(s2);
                 similarity = soundex_similarity(argv[2], argv[3]);
                 break;
             case 31:
             case 32:
                 sm_name = "Metaphone Phonetics";
-                sprintf(metrics, "normalized to %s & %s", metaphone(argv[2]), metaphone(argv[3]));
+                char *m1 = metaphone(argv[2]);
+                char *m2 = metaphone(argv[3]);
+                sprintf(metrics, "%s & %s", m1, m2);
+                free(m1);
+                free(m2);
                 similarity = metaphone_similarity(argv[2], argv[3]);
                 break;
             default:
@@ -190,7 +171,7 @@ int main(int argc, char *argv[]) {
                return 1;
         }
 
-        printf("%-31s between %-25s is %25s ", sm_name, compare, metrics);
+        printf("%-31s between %-25s is %12s ", sm_name, compare, metrics);
         printf("and yields a %3.0f%% similarity\n", similarity * 100);
 
         return EXIT_SUCCESS;

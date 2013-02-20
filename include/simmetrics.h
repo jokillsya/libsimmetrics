@@ -28,6 +28,35 @@
 #ifndef libsimmetrics_H
 #define libsimmetrics_H
 
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <libgen.h>
+#include "utlist.h"
+#include "utarray.h"
+#include "uthash.h"
+#include "tokenizer.h"
+#include "qgrams_distance.h"
+#include "block_distance.h"
+#include "cosine_similarity.h"
+#include "dice_similarity.h"
+#include "euclidean_distance.h"
+#include "jaccard_similarity.h"
+#include "jaro.h"
+#include "jaro_winkler.h"
+#include "levenshtein.h"
+#include "matching_coefficient.h"
+#include "simmetrics.h"
+#include "cost.h"
+#include "monge_elkan.h"
+#include "needleman_wunch.h"
+#include "overlap_coefficient.h"
+#include "smith_waterman.h"
+#include "smith_waterman_gotoh.h"
+#include "soundex.h"
+#include "metaphone.h"
+
 typedef union {
 
 	float (*custom_metric) (const char *, const char *, const void *);
