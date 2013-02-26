@@ -6,6 +6,7 @@ include_HEADERS = 	uthash.h \
 					simmetrics.h \
 					soundex.h \
 					metaphone.h \
+					double_metaphone.h \
 					util.h \
 					tokenizer.h \
 					jaro.h \

@@ -56,6 +56,7 @@
 #include "smith_waterman_gotoh.h"
 #include "soundex.h"
 #include "metaphone.h"
+#include "double_metaphone.h"
 
 typedef union {
 
@@ -98,7 +99,9 @@ similarity_function_t* smc_levenshtein_similarity();
 metric_function_t* smc_matching_coefficient();
 similarity_function_t* smc_matching_coefficient_similarity();
 normalize_function_t* smc_metaphone();
+normalize_function_t* smc_double_metaphone();
 similarity_function_t* smc_metaphone_similarity();
+similarity_function_t* smc_double_metaphone_similarity();
 similarity_function_t* smc_monge_elkan_similarity();
 metric_function_t* smc_needleman_wunch();
 similarity_function_t* smc_needleman_wunch_similarity();

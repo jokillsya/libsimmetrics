@@ -1,13 +1,13 @@
 #include "simmetrics.h"
 
-const int SIMMETC = 33;
+const int SIMMETC = 35;
 
-const char *SIMMETS[33] = {"block", "block_distance", "cos", "cosine", "dice", "eucli",
+const char *SIMMETS[35] = {"block", "block_distance", "cos", "cosine", "dice", "eucli",
         "euclidean_distance", "jac", "jaccard", "jar", "jaro", "wink", "jaro_winkler",
         "leven", "levenshtein", "match", "matching_coefficient", "monge", "monge_elkan",
         "need", "needleman_wunch", "ol", "overlap_coefficient", "qg", "qgrams_distance",
         "smith", "smith_waterman", "gotoh", "smith_waterman_gotoh", "snd", "soundex",
-        "meta", "metaphone"};
+        "meta", "metaphone", "dmeta", "double_metaphone"};
 
 int which_type(char *simtype) 
 {
@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
         argv[1] = "smith_waterman_gotoh"; main(argc, argv);
         argv[1] = "soundex"; main(argc, argv);
         argv[1] = "metaphone"; main(argc, argv);
+        argv[1] = "double_metaphone"; main(argc, argv);
     }
     else {
         float similarity = 0;
@@ -165,6 +166,15 @@ int main(int argc, char *argv[]) {
                 free(m1);
                 free(m2);
                 similarity = metaphone_similarity(argv[2], argv[3]);
+                break;
+            case 33:
+                sm_name = "Double Metaphone Phonetics";
+                char *dm1 = double_metaphone(argv[2]);
+                char *dm2 = double_metaphone(argv[3]);
+                sprintf(metrics, "%s & %s", dm1, dm2);
+                free(dm1);
+                free(dm2);
+                similarity = double_metaphone_similarity(argv[2], argv[3]);
                 break;
             default:
                printf("Unknown SimMetric %s, not found.\n", argv[1]);
