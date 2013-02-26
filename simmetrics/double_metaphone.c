@@ -36,6 +36,8 @@
 #include <assert.h>
 #include "double_metaphone.h"
 
+#define MAX_MLEN 4
+
 #define META_MALLOC(v,n,t) \
           (v = (t*)malloc(((n)*sizeof(t))))
 #define META_REALLOC(v,n,t) \
@@ -1032,7 +1034,7 @@ void double_metaphone_custom(const char *str, char **codes) {
 
 char *double_metaphone(const char *str) {
 
-	char *code = malloc(strlen(str) * sizeof(str));
+	char *code = malloc(MAX_MLEN * sizeof(char));
 	code[0] = '\0';
 	double_metaphone_custom(str, &code);
 	return code;

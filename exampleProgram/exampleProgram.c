@@ -168,6 +168,7 @@ int main(int argc, char *argv[]) {
                 similarity = metaphone_similarity(argv[2], argv[3]);
                 break;
             case 33:
+            case 34:
                 sm_name = "Double Metaphone Phonetics";
                 char *dm1 = double_metaphone(argv[2]);
                 char *dm2 = double_metaphone(argv[3]);
@@ -182,7 +183,7 @@ int main(int argc, char *argv[]) {
         }
 
         printf("%-31s between %-25s is %12s ", sm_name, compare, metrics);
-        printf("and yields a %3.0f%% similarity\n", similarity * 100);
+        printf("and yields a %f similarity\n", similarity * 100);
 
         return EXIT_SUCCESS;
     }
