@@ -20,16 +20,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
- * metaphone.h
+ * double_metaphone.h
  *
- *  Created on: Jan 18, 2013
+ *  Created on: Feb 26, 2013
  *      Author: Johnathan Botha <jokillsya@gmail.com>
+ *
  */
 
-#ifndef METAPHONE_H_
-#define METAPHONE_H_
+#ifndef DOUBLE_METAPHONE__H
+#define DOUBLE_METAPHONE__H
 
-char *metaphone(const char *str);
-float metaphone_similarity(const char *str1, const char *str2);
 
-#endif /* METAPHONE_H_ */
+typedef struct
+{
+    char *str;
+    int length;
+    int bufsize;
+    int free_string_on_destroy;
+}
+metastring;
+
+
+void double_metaphone_custom(const char *str, char **codes);
+
+char *double_metaphone(const char *str);
+float double_metaphone_similarity(const char *str1, const char *str2);
+
+
+#endif /* DOUBLE_METAPHONE__H */
