@@ -183,7 +183,7 @@ int main(int argc, char *argv[]) {
         }
 
         printf("%-31s between %-25s is %12s ", sm_name, compare, metrics);
-        printf("and yields a %f similarity\n", similarity * 100);
+        printf("and yields a %3.0f%% similarity\n", similarity * 100);
 
         return EXIT_SUCCESS;
     }
