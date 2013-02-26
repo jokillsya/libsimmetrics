@@ -38,7 +38,7 @@
 #include <ctype.h>
 
 #include "soundex.h"
-#include "jaro_winkler.h"
+#include "smith_waterman_gotoh.h"
 
 const char US_EN_MAP[] = "01230120022455012623010202";
 
@@ -196,7 +196,7 @@ float soundex_similarity(const char *str1, const char *str2) {
 	char *s1 = soundex(str1);
 	char *s2 = soundex(str2);
 
-	float res = jaro_winkler_similarity(s1, s2);
+	float res = smith_waterman_gotoh_similarity(s1, s2);
 
 	free(s1);
 	free(s2);
