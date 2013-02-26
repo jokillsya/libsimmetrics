@@ -35,7 +35,7 @@
 #include <stdarg.h>
 #include <assert.h>
 #include "double_metaphone.h"
-#include "jaro_winkler.h"
+#include "smith_waterman_gotoh.h"
 
 #define MAX_MLEN 4
 
@@ -1046,7 +1046,7 @@ float double_metaphone_similarity(const char *str1, const char *str2) {
 
 	char *s1 = double_metaphone(str1);
 	char *s2 = double_metaphone(str2);
-	float res = jaro_winkler_similarity(s1, s2);
+	float res = smith_waterman_gotoh_similarity(s1, s2);
 	free(s1);
 	free(s2);
 
