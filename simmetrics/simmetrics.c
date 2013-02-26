@@ -165,6 +165,27 @@ similarity_function_t* smc_metaphone_similarity() {
 
 }
 
+normalize_function_t* smc_double_metaphone() {
+
+	normalize_function_t *funcs = malloc(sizeof(normalize_function_t));
+
+	funcs->normalize = &double_metaphone;
+
+	return funcs;
+
+}
+
+similarity_function_t* smc_double_metaphone_similarity() {
+
+	similarity_function_t *funcs = malloc(sizeof(similarity_function_t));
+
+//	funcs->custom_similarity = &metaphone_similarity_custom;
+	funcs->similarity = &double_metaphone_similarity;
+
+	return funcs;
+
+}
+
 similarity_function_t* smc_monge_elkan_similarity() {
 
 	similarity_function_t *funcs = malloc(sizeof(similarity_function_t));

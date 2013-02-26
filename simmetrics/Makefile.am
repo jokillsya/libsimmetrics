@@ -14,6 +14,7 @@ libsimmetrics_la_SOURCES = 	util.c \
 							simmetrics.c \
 							soundex.c \
 							metaphone.c \
+							double_metaphone.c \
 							jaro.c \
 							levenshtein.c \
 							jaro_winkler.c \
