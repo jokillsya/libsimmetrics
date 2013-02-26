@@ -35,6 +35,7 @@
 #include <stdarg.h>
 #include <assert.h>
 #include "double_metaphone.h"
+#include "jaro_winkler.h"
 
 #define MAX_MLEN 4
 
