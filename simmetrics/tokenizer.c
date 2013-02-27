@@ -47,7 +47,7 @@ static unsigned int str_hash(const char *s) {
         hash = ((hash << 5) + hash) ^ c;
     }
 
-    return hash;
+    return (hash);
 
 }
 
@@ -71,7 +71,7 @@ dl_token_t *tokenize_to_dllist(const char *str, const char *delimiters) {
 
 	}
 
-	return r;
+	return (r);
 
 }
 
@@ -128,7 +128,7 @@ dl_token_t *qgram_tokenize_to_dllist(const char *str, const qgram_t *qtype) {
 
 	free(tmp);
 
-	return r;
+	return (r);
 
 }
 
@@ -197,7 +197,7 @@ hash_token_t *qgram_uq_tokenize_to_hash(const char *str, const qgram_t *qtype) {
 
 	free(tmp);
 
-	return table;
+	return (table);
 
 }
 
@@ -254,7 +254,7 @@ UT_array *qgram_tokenize_to_utarray(const char *str, const qgram_t *qtype) {
 
 	free(tmp);
 
-	return strs;
+	return (strs);
 
 }
 
@@ -287,7 +287,7 @@ hash_token_t *uq_tokenize_to_hash(const char *str, const char *delimiters) {
 
 	}
 
-	return table;
+	return (table);
 
 }
 
@@ -325,7 +325,7 @@ hash_token_t *merge_tokens(hash_token_t *t1, hash_token_t *t2) {
 
 	}
 
-	return res;
+	return (res);
 
 }
 
@@ -348,7 +348,7 @@ UT_array *tokenize_to_utarray(const char *str, const char *delimiters) {
 
 	}
 
-	return strs;
+	return (strs);
 
 }
 

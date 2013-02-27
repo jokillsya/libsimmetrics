@@ -44,7 +44,7 @@ float smith_waterman_custom(const char *str1, const char *str2, const void *v_co
 	int i, j;
 
 	if ((n == 0) || (m == 0))
-		return (float) 0;
+		return ((float) 0);
 
 	float d[n][m];
 
@@ -91,13 +91,13 @@ float smith_waterman_custom(const char *str1, const char *str2, const void *v_co
 
 	}
 
-	return max_so_far;
+	return (max_so_far);
 
 }
 
 float smith_waterman(const char *str1, const char *str2) {
 
-	return smith_waterman_custom(str1, str2, sub_cost_1_min_2());
+	return (smith_waterman_custom(str1, str2, sub_cost_1_min_2()));
 
 }
 
@@ -119,12 +119,12 @@ float smith_waterman_similarity_custom(const char *str1, const char *str2, const
 	else
 		ret = (sw / max_val);
 
-	return ret;
+	return (ret);
 
 }
 
 float smith_waterman_similarity(const char *str1, const char *str2) {
 
-	return smith_waterman_similarity_custom(str1, str2, sub_cost_1_min_2());
+	return (smith_waterman_similarity_custom(str1, str2, sub_cost_1_min_2()));
 
 }

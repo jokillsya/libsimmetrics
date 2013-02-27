@@ -33,7 +33,8 @@
 #include "jaro.h"
 #include "util.h"
 
-static char *get_common_chars(const char *str1, const char *str2, const int d_step) {
+static char *get_common_chars(const char *str1, const char *str2,
+		const int d_step) {
 
 	char *ret_str;
 	char ret[strlen(str1) + 1];
@@ -69,13 +70,14 @@ static char *get_common_chars(const char *str1, const char *str2, const int d_st
 	ret_str = malloc(sizeof(ret) * strlen(ret));
 	strcpy(ret_str, ret);
 
-	return ret_str;
+	return (ret_str);
 
 }
 
 float jaro_similarity(const char *str1, const char *str2) {
 
-	int halflen = ((MIN(strlen(str1), strlen(str2))) / 2) + ((MIN(strlen(str1), strlen(str2))) % 2);
+	int halflen = ((MIN(strlen(str1), strlen(str2))) / 2)
+			+ ((MIN(strlen(str1), strlen(str2))) % 2);
 
 	char *com1 = get_common_chars(str1, str2, halflen);
 	char *com2 = get_common_chars(str2, str1, halflen);
@@ -87,13 +89,13 @@ float jaro_similarity(const char *str1, const char *str2) {
 
 	if ((c1_len == 0) || (c2_len == 0)) {
 
-		return 0.0;
+		return (0.0);
 
 	}
 
 	if (c1_len != c2_len) {
 
-		return 0.0;
+		return (0.0);
 
 	}
 
@@ -115,7 +117,9 @@ float jaro_similarity(const char *str1, const char *str2) {
 
 	trans /= (float) 2;
 
-	return ((float) c1_len / ((float) s1_len) + (float) c2_len / ((float) s2_len) + ((float) c1_len - (float) trans) / ((float) c1_len)) / ((float) 3);
+	return (((float) c1_len / ((float) s1_len)
+			+ (float) c2_len / ((float) s2_len)
+			+ ((float) c1_len - (float) trans) / ((float) c1_len)) / ((float) 3));
 
 }
 

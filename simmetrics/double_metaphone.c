@@ -65,7 +65,7 @@ new_meta_string(const char *init_str) {
 	strncpy(s->str, init_str, s->length + 1);
 	s->free_string_on_destroy = 1;
 
-	return s;
+	return (s);
 }
 
 void free_meta_string(metastring * s) {
@@ -96,36 +96,36 @@ int is_vowel(metastring * s, int pos) {
 	char c;
 
 	if ((pos < 0) || (pos >= s->length))
-		return 0;
+		return (0);
 
 	c = *(s->str + pos);
 	if ((c == 'A') || (c == 'E') || (c == 'I') || (c == 'O') || (c == 'U')
 			|| (c == 'Y'))
-		return 1;
+		return (1);
 
-	return 0;
+	return (0);
 }
 
 int slavo_germanic(metastring * s) {
 	if ((char *) strstr(s->str, "W"))
-		return 1;
+		return (1);
 	else if ((char *) strstr(s->str, "K"))
-		return 1;
+		return (1);
 	else if ((char *) strstr(s->str, "CZ"))
-		return 1;
+		return (1);
 	else if ((char *) strstr(s->str, "WITZ"))
-		return 1;
+		return (1);
 	else
-		return 0;
+		return (0);
 }
 
 int get_len(metastring * s) {
-	return s->length;
+	return (s->length);
 }
 
 char get_at(metastring * s, int pos) {
 	if ((pos < 0) || (pos >= s->length))
-		return '\0';
+		return ('\0');
 
 	return ((char) *(s->str + pos));
 }
@@ -146,7 +146,7 @@ int str_at(metastring * s, int start, int length, ...) {
 	va_list ap;
 
 	if ((start < 0) || (start >= s->length))
-		return 0;
+		return (0);
 
 	pos = (s->str + start);
 	va_start(ap, length);
@@ -154,12 +154,12 @@ int str_at(metastring * s, int start, int length, ...) {
 	do {
 		test = va_arg(ap, char *);
 		if (*test && (strncmp(pos, test, length) == 0))
-			return 1;
+			return (1);
 	} while (strcmp(test, ""));
 
 	va_end(ap);
 
-	return 0;
+	return (0);
 }
 
 void metaph_add(metastring * s, char *new_str) {
@@ -1038,7 +1038,7 @@ char *double_metaphone(const char *str) {
 	char *code = malloc(MAX_MLEN * sizeof(char));
 	code[0] = '\0';
 	double_metaphone_custom(str, &code);
-	return code;
+	return (code);
 
 }
 
@@ -1050,6 +1050,6 @@ float double_metaphone_similarity(const char *str1, const char *str2) {
 	free(s1);
 	free(s2);
 
-	return res;
+	return (res);
 
 }

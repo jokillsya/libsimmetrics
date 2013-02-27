@@ -54,7 +54,7 @@ float jaccard_similarity_custom(const char *str1, const char *str2, const void *
 	hash_token_free(h2);
 	hash_token_free(all);
 
-	return ret;
+	return (ret);
 
 }
 
@@ -67,7 +67,7 @@ float jaccard_similarity(const char *str1, const char *str2) {
 	};
 
 
-	return jaccard_similarity_custom(str1, str2, &tokenizer);
+	return (jaccard_similarity_custom(str1, str2, &tokenizer));
 
 }
 

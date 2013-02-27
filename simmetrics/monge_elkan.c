@@ -38,7 +38,8 @@
 #include "smith_waterman_gotoh.h"
 #include "tokenizer.h"
 
-float monge_elkan_similarity_custom(const char *str1, const char *str2, const void *v_conf) {
+float monge_elkan_similarity_custom(const char *str1, const char *str2,
+		const void *v_conf) {
 
 //	cost_type_e cost_type = WIN_COMP_IDX_COST;
 	char *tok_str = WHITESPACE_DELIMITERS;
@@ -54,13 +55,15 @@ float monge_elkan_similarity_custom(const char *str1, const char *str2, const vo
 
 	char *l, *r, *brkt, *brkb;
 
-	for (l = strtok_r(str1_arr, tok_str, &brkt); l; l = strtok_r(NULL, tok_str, &brkt)) {
+	for (l = strtok_r(str1_arr, tok_str, &brkt); l;
+			l = strtok_r(NULL, tok_str, &brkt)) {
 
 		strcpy(str2_arr, str2);
 		tok1_cnt++;
 		max_found = 0;
 
-		for (r = strtok_r(str2_arr, tok_str, &brkb); r; r = strtok_r(NULL, tok_str, &brkb)) {
+		for (r = strtok_r(str2_arr, tok_str, &brkb); r;
+				r = strtok_r(NULL, tok_str, &brkb)) {
 
 			found = smith_waterman_gotoh_similarity_custom(l, r, v_conf);
 
@@ -84,22 +87,16 @@ float monge_elkan_similarity(const char *str1, const char *str2) {
 	affine_idx_cost_t *aff_idx_c = affine_gap_5_1();
 	sub_cost_t *sub_cost = sub_cost_5_3_min_3();
 
-	comp_idx_cost_t comp_cost = {
-			.gap_cost = aff_idx_c,
-			.sub_cost = sub_cost
-	};
+	comp_idx_cost_t comp_cost = { .gap_cost = aff_idx_c, .sub_cost = sub_cost };
 
-	w_comp_idx_cost_t conf = {
-			.win_size = 100,
-			.comp_conf = &comp_cost
-	};
+	w_comp_idx_cost_t conf = { .win_size = 100, .comp_conf = &comp_cost };
 
 	ret = monge_elkan_similarity_custom(str1, str2, &conf);
 
 	free_affine_sub_cost(aff_idx_c);
 	free_sub_cost(sub_cost);
 
-	return ret;
+	return (ret);
 
 }
 
