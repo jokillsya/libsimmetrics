@@ -537,7 +537,7 @@ char *metaphone(const char *str) {
 	 if ( metaph[lastChr] == 'S' && Lng >= 3 ) metaph[lastChr] = '\0';
 	 */
 
-	return metaph;
+	return (metaph);
 }
 
 float metaphone_similarity(const char *str1, const char *str2) {
@@ -550,7 +550,7 @@ float metaphone_similarity(const char *str1, const char *str2) {
 	free(s1);
 	free(s2);
 
-	return res;
+	return (res);
 
 }
 

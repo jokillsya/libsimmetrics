@@ -84,7 +84,7 @@ int block_distance_custom(const char * str1, const char *str2, const void *v_tok
 	hash_token_free(h2);
 	hash_token_free(all);
 
-	return td;
+	return (td);
 
 }
 
@@ -96,7 +96,7 @@ int block_distance(const char * str1, const char *str2) {
 			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return block_distance_custom(str1, str2, &tokenizer);
+	return (block_distance_custom(str1, str2, &tokenizer));
 
 }
 
@@ -116,7 +116,7 @@ float block_distance_similarity_custom(const char *str1, const char *str2, const
 	utarray_free(strs1);
 	utarray_free(strs2);
 
-	return ret;
+	return (ret);
 
 }
 
@@ -128,7 +128,7 @@ float block_distance_similarity(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return block_distance_similarity_custom(str1, str2, &tokenizer);
+	return (block_distance_similarity_custom(str1, str2, &tokenizer));
 
 }
 

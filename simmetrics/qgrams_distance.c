@@ -86,7 +86,7 @@ int qgrams_distance_custom(const char *str1, const char *str2, const void *v_tok
 	hash_token_free(h2);
 	hash_token_free(all);
 
-	return td;
+	return (td);
 
 }
 
@@ -100,7 +100,7 @@ int qgrams_distance(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &qgram_uq_tokenize_to_hash
 	};
 
-	return qgrams_distance_custom(str1, str2, &tokenizer);
+	return (qgrams_distance_custom(str1, str2, &tokenizer));
 
 }
 
@@ -127,7 +127,7 @@ float qgrams_distance_similarity_custom(const char *str1, const char *str2, cons
 	utarray_free(tm1);
 	utarray_free(tm2);
 
-	return ret;
+	return (ret);
 
 }
 
@@ -141,7 +141,7 @@ float qgrams_distance_similarity(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &qgram_uq_tokenize_to_hash
 	};
 
-	return qgrams_distance_similarity_custom(str1, str2, &tokenizer);
+	return (qgrams_distance_similarity_custom(str1, str2, &tokenizer));
 
 }
 

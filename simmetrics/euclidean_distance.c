@@ -84,7 +84,7 @@ float euclidean_distance_custom(const char *str1, const char *str2, const void *
 	hash_token_free(h2);
 	hash_token_free(all);
 
-	return sqrtf(td);
+	return (sqrtf(td));
 
 }
 
@@ -96,7 +96,7 @@ float euclidean_distance(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return euclidean_distance_custom(str1, str2, &tokenizer);
+	return (euclidean_distance_custom(str1, str2, &tokenizer));
 
 }
 
@@ -114,7 +114,7 @@ float euclidean_distance_similarity_custom(const char *str1, const char *str2, c
 	utarray_free(tokarr1);
 	utarray_free(tokarr2);
 
-	return (tp - td) / tp;
+	return ((tp - td) / tp);
 
 }
 
@@ -126,6 +126,6 @@ float euclidean_distance_similarity(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return euclidean_distance_similarity_custom(str1, str2, &tokenizer);
+	return (euclidean_distance_similarity_custom(str1, str2, &tokenizer));
 
 }

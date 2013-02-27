@@ -66,7 +66,7 @@ float matching_coefficient_custom(const char *str1, const char *str2, const void
 	utarray_free(t1);
 	utarray_free(t2);
 
-	return (float) tf;
+	return ((float) tf);
 
 }
 
@@ -78,7 +78,7 @@ float matching_coefficient(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return matching_coefficient_custom(str1, str2, &tokenizer);
+	return (matching_coefficient_custom(str1, str2, &tokenizer));
 
 }
 
@@ -97,7 +97,7 @@ float matching_coefficient_similarity_custom(const char *str1, const char *str2,
 	utarray_free(tm1);
 	utarray_free(tm2);
 
-	return ret;
+	return (ret);
 
 }
 
@@ -109,7 +109,7 @@ float matching_coefficient_similarity(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return matching_coefficient_similarity_custom(str1, str2, &tokenizer);
+	return (matching_coefficient_similarity_custom(str1, str2, &tokenizer));
 
 }
 

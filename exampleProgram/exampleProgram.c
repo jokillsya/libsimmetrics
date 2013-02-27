@@ -14,9 +14,9 @@ int which_type(char *simtype)
     int i;
     for (i=0; i < SIMMETC; i++) {
         if (strcmp(SIMMETS[i], simtype) == 0)
-            return i;
+            return (i);
     }
-    return -1;
+    return (-1);
 }
 
 int main(int argc, char *argv[]) {
@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
             printf(" %s", SIMMETS[i]);
         }
         printf("\n");
-        return 1;
+        return (1);
     }
     else if (strcmp(argv[1], "all") == 0) {
         argv[1] = "block_distance"; main(argc, argv);
@@ -179,12 +179,12 @@ int main(int argc, char *argv[]) {
                 break;
             default:
                printf("Unknown SimMetric %s, not found.\n", argv[1]);
-               return 1;
+               return (1);
         }
 
         printf("%-31s between %-25s is %12s ", sm_name, compare, metrics);
         printf("and yields a %3.0f%% similarity\n", similarity * 100);
 
-        return EXIT_SUCCESS;
+        return (EXIT_SUCCESS);
     }
 }
