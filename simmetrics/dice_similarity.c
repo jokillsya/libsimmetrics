@@ -53,7 +53,7 @@ float dice_similarity_custom(const char *str1, const char *str2, const void *v_t
 	hash_token_free(h2);
 	hash_token_free(all);
 
-	return ret;
+	return (ret);
 
 }
 
@@ -65,7 +65,7 @@ float dice_similarity(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return dice_similarity_custom(str1, str2, &tokenizer);
+	return (dice_similarity_custom(str1, str2, &tokenizer));
 
 }
 

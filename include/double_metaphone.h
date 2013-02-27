@@ -30,21 +30,16 @@
 #ifndef DOUBLE_METAPHONE__H
 #define DOUBLE_METAPHONE__H
 
-
-typedef struct
-{
-    char *str;
-    int length;
-    int bufsize;
-    int free_string_on_destroy;
-}
-metastring;
-
+typedef struct {
+	char *str;
+	int length;
+	int bufsize;
+	int free_string_on_destroy;
+} metastring;
 
 void double_metaphone_custom(const char *str, char **codes);
 
 char *double_metaphone(const char *str);
 float double_metaphone_similarity(const char *str1, const char *str2);
-
 
 #endif /* DOUBLE_METAPHONE__H */

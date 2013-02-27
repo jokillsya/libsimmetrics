@@ -8,7 +8,7 @@ distance_function_t* smc_block_distance() {
 	funcs->custom_distance = &block_distance_custom;
 	funcs->distance = &block_distance;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -19,7 +19,7 @@ similarity_function_t* smc_block_distance_similarity() {
 //	funcs->custom_similarity = &block_distance_similarity_custom;
 	funcs->similarity = &block_distance_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -30,7 +30,7 @@ similarity_function_t* smc_cosine_similarity() {
 	funcs->custom_similarity = &cosine_similarity_custom;
 	funcs->similarity = &cosine_similarity;
 
-	return funcs;
+	return (funcs);
 }
 
 similarity_function_t* smc_dice_similarity() {
@@ -40,7 +40,7 @@ similarity_function_t* smc_dice_similarity() {
 	funcs->custom_similarity = &dice_similarity_custom;
 	funcs->similarity = &dice_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -51,7 +51,7 @@ metric_function_t* smc_euclidean_distance() {
 	funcs->custom_metric = &euclidean_distance_custom;
 	funcs->metric = &euclidean_distance;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -63,7 +63,7 @@ similarity_function_t* smc_euclidean_distance_similarity() {
 	funcs->custom_similarity = &euclidean_distance_similarity_custom;
 	funcs->similarity = &euclidean_distance_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -74,7 +74,7 @@ similarity_function_t* smc_jaccard_similarity() {
 	funcs->custom_similarity = &jaccard_similarity_custom;
 	funcs->similarity = &jaccard_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -85,7 +85,7 @@ similarity_function_t* smc_jaro_similarity() {
 //	funcs->custom_similarity = &jaro_similarity_custom;
 	funcs->similarity = &jaro_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -96,7 +96,7 @@ similarity_function_t* smc_jaro_winkler_similarity() {
 //	funcs->custom_similarity = &jaro_winkler_similarity_custom;
 	funcs->similarity = &jaro_winkler_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -107,7 +107,7 @@ distance_function_t* smc_levenshtein() {
 //	funcs->custom_distance = &levenshtein_custom;
 	funcs->distance = &levenshtein;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -118,7 +118,7 @@ similarity_function_t* smc_levenshtein_similarity() {
 //	funcs->custom_similarity = &levenshtein_similarity_custom;
 	funcs->similarity = &levenshtein_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -129,7 +129,7 @@ metric_function_t* smc_matching_coefficient() {
 	funcs->custom_metric = &matching_coefficient_custom;
 	funcs->metric = &matching_coefficient;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -140,7 +140,7 @@ similarity_function_t* smc_matching_coefficient_similarity() {
 	funcs->custom_similarity = &matching_coefficient_similarity_custom;
 	funcs->similarity = &matching_coefficient_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -150,7 +150,7 @@ normalize_function_t* smc_metaphone() {
 
 	funcs->normalize = &metaphone;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -161,7 +161,7 @@ similarity_function_t* smc_metaphone_similarity() {
 //	funcs->custom_similarity = &metaphone_similarity_custom;
 	funcs->similarity = &metaphone_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -171,7 +171,7 @@ normalize_function_t* smc_double_metaphone() {
 
 	funcs->normalize = &double_metaphone;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -179,10 +179,9 @@ similarity_function_t* smc_double_metaphone_similarity() {
 
 	similarity_function_t *funcs = malloc(sizeof(similarity_function_t));
 
-//	funcs->custom_similarity = &metaphone_similarity_custom;
 	funcs->similarity = &double_metaphone_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -193,7 +192,7 @@ similarity_function_t* smc_monge_elkan_similarity() {
 	funcs->custom_similarity = &monge_elkan_similarity_custom;
 	funcs->similarity = &monge_elkan_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -204,7 +203,7 @@ metric_function_t* smc_needleman_wunch() {
 	funcs->custom_metric = &needleman_wunch_custom;
 	funcs->metric = &needleman_wunch;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -215,7 +214,7 @@ similarity_function_t* smc_needleman_wunch_similarity() {
 	funcs->custom_similarity = &needleman_wunch_similarity_custom;
 	funcs->similarity = &needleman_wunch_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -226,7 +225,7 @@ similarity_function_t* smc_overlap_coefficient_similarity() {
 	funcs->custom_similarity = &overlap_coefficient_similarity_custom;
 	funcs->similarity = &overlap_coefficient_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -237,7 +236,7 @@ distance_function_t* smc_qgrams_distance() {
 	funcs->custom_distance = &qgrams_distance_custom;
 	funcs->distance = &qgrams_distance;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -248,7 +247,7 @@ similarity_function_t* smc_qgrams_distance_similarity() {
 	funcs->custom_similarity = &qgrams_distance_similarity_custom;
 	funcs->similarity = &qgrams_distance_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -259,7 +258,7 @@ metric_function_t* smc_smith_waterman() {
 	funcs->custom_metric = &smith_waterman_custom;
 	funcs->metric = &smith_waterman;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -270,7 +269,7 @@ similarity_function_t* smc_smith_waterman_similarity() {
 	funcs->custom_similarity = &smith_waterman_similarity_custom;
 	funcs->similarity = &smith_waterman_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -281,7 +280,7 @@ metric_function_t* smc_smith_waterman_gotoh() {
 	funcs->custom_metric = &smith_waterman_gotoh_custom;
 	funcs->metric = &smith_waterman_gotoh;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -292,7 +291,7 @@ similarity_function_t* smc_smith_waterman_gotoh_similarity() {
 	funcs->custom_similarity = &smith_waterman_gotoh_similarity_custom;
 	funcs->similarity = &smith_waterman_gotoh_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -302,7 +301,7 @@ normalize_function_t* smc_soundex() {
 
 	funcs->normalize = &soundex;
 
-	return funcs;
+	return (funcs);
 
 }
 
@@ -310,10 +309,9 @@ similarity_function_t* smc_soundex_similarity() {
 
 	similarity_function_t *funcs = malloc(sizeof(similarity_function_t));
 
-//	funcs->custom_similarity = &soundex_similarity_custom;
 	funcs->similarity = &soundex_similarity;
 
-	return funcs;
+	return (funcs);
 
 }
 

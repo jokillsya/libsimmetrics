@@ -48,7 +48,7 @@ float smith_waterman_gotoh_custom(const char *str1, const char *str2, const void
 	int i, j, k, w_st;
 
 	if ((n == 0) || (m == 0))
-		return (float) 0;
+		return ((float) 0);
 
 	float d[n][m];
 
@@ -133,7 +133,7 @@ float smith_waterman_gotoh_custom(const char *str1, const char *str2, const void
 
 	}
 
-	return max_so_far;
+	return (max_so_far);
 
 }
 
@@ -149,7 +149,7 @@ float smith_waterman_gotoh(const char *str1, const char *str2) {
 			.comp_conf = &comp_cost
 	};
 
-	return smith_waterman_gotoh_custom(str1, str2, &conf);
+	return (smith_waterman_gotoh_custom(str1, str2, &conf));
 
 }
 
@@ -171,7 +171,7 @@ float smith_waterman_gotoh_similarity_custom(const char *str1, const char *str2,
 	else
 		ret = (sw_gotoh / max_value);
 
-	return ret;
+	return (ret);
 
 }
 
@@ -197,7 +197,7 @@ float smith_waterman_gotoh_similarity(const char *str1, const char *str2) {
 	free_affine_sub_cost(aff_idx_c);
 	free_sub_cost(sub_cost);
 
-	return ret;
+	return (ret);
 
 }
 

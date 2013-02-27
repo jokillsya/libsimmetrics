@@ -53,7 +53,7 @@ float cosine_similarity_custom(const char *str1, const char *str2, const void *v
 	hash_token_free(h2);
 	hash_token_free(all);
 
-	return ret;
+	return (ret);
 
 }
 
@@ -65,7 +65,7 @@ float cosine_similarity(const char *str1, const char *str2) {
 			.tok_uq_hash_func = &uq_tokenize_to_hash
 	};
 
-	return cosine_similarity_custom(str1, str2, &tokenizer);
+	return (cosine_similarity_custom(str1, str2, &tokenizer));
 
 }
 

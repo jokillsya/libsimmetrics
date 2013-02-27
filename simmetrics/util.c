@@ -74,7 +74,7 @@ unsigned int str_hash(const char *s) {
 		hash = ((hash << 5) + hash) ^ c;
 	}
 
-	return hash;
+	return (hash);
 
 }
 

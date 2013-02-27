@@ -237,10 +237,8 @@ double jaro_winkler_original_strcmp95(char *ying, char *yang, long y_length,
 
 		/* Adjust for having up to the first 4 characters in common                 */
 		j = (minv >= 4) ? 4 : minv;
-		for (i = 0;
-				((i < j) && (ying_hold[i] == yang_hold[i])
-						&& (NOTNUM(ying_hold[i])));i++); if
-(		i) weight += i * 0.1 * (1.0 - weight);
+		for (i = 0;	((i < j) && (ying_hold[i] == yang_hold[i]) && (NOTNUM(ying_hold[i])));i++);
+			if (i) weight += i * 0.1 * (1.0 - weight);
 
 		/* Optionally adjust for long strings.                                      */
 		/* After agreeing beginning chars, at least two more must agree and
@@ -272,7 +270,7 @@ static int get_pref_length(const char *str1, const char *str2) {
 
 	}
 
-	return ret;
+	return (ret);
 
 }
 
@@ -280,7 +278,7 @@ float jaro_winkler_similarity(const char *str1, const char *str2) {
 
 	float d = jaro_similarity(str1, str2);
 	int pref_len = get_pref_length(str1, str2);
-	return d + (((float) pref_len) * PREF_ADJ_SCALE * (((float) 1.0) - d));
+	return (d + (((float) pref_len) * PREF_ADJ_SCALE * (((float) 1.0) - d)));
 
 }
 

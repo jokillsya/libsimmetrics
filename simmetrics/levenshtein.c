@@ -55,9 +55,9 @@ int levenshtein(const char *str1, const char *str2) {
 
 	/* handle degenerate cases */
 	if (!len1)
-		return len2;
+		return (len2);
 	if (!len2)
-		return len1;
+		return (len1);
 
 	/* initialize the column vector */
 	for (j = 0; j < len2 + 1; j++)
@@ -72,7 +72,9 @@ int levenshtein(const char *str1, const char *str2) {
 			 * cost of replacement is 0 if the two chars are the same, or have
 			 * been transposed with the chars immediately before. otherwise 1.
 			 */
-			cost = !(eq(str1[i], str2[j]) || (i && j && eq(str1[i-1], str2[j]) && eq(str1[i],str2[j-1])));
+			cost = !(eq(str1[i], str2[j])
+					|| (i && j && eq(str1[i-1], str2[j])
+							&& eq(str1[i],str2[j-1])));
 			/* find the least cost of insertion, deletion, or replacement */
 			next = min(min( v[j+1] + 1,
 							current + 1 ),
@@ -86,7 +88,7 @@ int levenshtein(const char *str1, const char *str2) {
 		v[len2] = next;
 	}
 	free(v);
-	return next;
+	return (next);
 }
 
 float levenshtein_similarity(const char *str1, const char *str2) {

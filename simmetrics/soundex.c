@@ -48,11 +48,11 @@ static char map(const char _ch) {
 
 	if ((index < 0) || (index >= ((int) strlen(US_EN_MAP)))) {
 
-		return '\0';
+		return ('\0');
 
 	}
 
-	return US_EN_MAP[index];
+	return (US_EN_MAP[index]);
 
 }
 
@@ -62,7 +62,7 @@ static char get_mapping_code(const char *str, const int index) {
 
 	if (m_chr == '\0') {
 
-		return '\0';
+		return ('\0');
 
 	}
 
@@ -85,7 +85,7 @@ static char get_mapping_code(const char *str, const int index) {
 
 	}
 
-	return m_chr;
+	return (m_chr);
 
 }
 
@@ -101,7 +101,7 @@ static char* clean(const char *str) {
 
 		res = malloc(sizeof(str));
 		res[0] = '\0';
-		return res;
+		return (res);
 
 	} else {
 
@@ -140,7 +140,7 @@ static char* clean(const char *str) {
 
 	}
 
-	return res;
+	return (res);
 
 }
 
@@ -188,7 +188,7 @@ char *soundex(const char *_str) {
 	strcpy(ret, out);
 	free((char*) str);
 
-	return ret;
+	return (ret);
 }
 
 float soundex_similarity(const char *str1, const char *str2) {
@@ -201,7 +201,7 @@ float soundex_similarity(const char *str1, const char *str2) {
 	free(s1);
 	free(s2);
 
-	return res;
+	return (res);
 
 }
 
