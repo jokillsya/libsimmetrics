@@ -48,7 +48,7 @@ static char *get_common_chars(const char *str1, const char *str2,
 		char tmp = str1[i];
 
 		int max = MAX(0, (i - d_step));
-		int min = MIN(i + d_step, ((int)strlen(str2) - 1));
+		int min = MIN(i + d_step, (int)strlen(str2) );
 
 		for (j = max; j < min; j++) {
 
