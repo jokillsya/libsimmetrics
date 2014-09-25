@@ -37,9 +37,14 @@ typedef struct {
 	int free_string_on_destroy;
 } metastring;
 
-void double_metaphone_custom(const char *str, char **codes);
+typedef struct double_metaphone_result {
+    char *primary;
+    char *secondary;
+} double_metaphone_result;
 
-char *double_metaphone(const char *str);
+void free_double_metaphone_result(double_metaphone_result *result);
+
+double_metaphone_result *double_metaphone(const char *str);
 float double_metaphone_similarity(const char *str1, const char *str2);
 
 #endif /* DOUBLE_METAPHONE__H */

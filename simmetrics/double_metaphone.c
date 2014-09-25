@@ -78,7 +78,13 @@ void free_meta_string(metastring * s) {
 	META_FREE(s);
 }
 
-void inc_buffer(metastring * s, int chars_needed) {
+void free_double_metaphone_result(double_metaphone_result *result) {
+	free(result->primary);
+	free(result->secondary);
+	free(result);
+}
+
+void inc_buffer(metastring *s, int chars_needed) {
 	META_REALLOC(s->str, (s->bufsize + chars_needed + 10), char);
 	assert( s->str != NULL);
 	s->bufsize = s->bufsize + chars_needed + 10;
@@ -177,7 +183,7 @@ void metaph_add(metastring * s, char *new_str) {
 	s->length += add_length;
 }
 
-void double_metaphone_custom(const char *str, char **codes) {
+double_metaphone_result *double_metaphone(const char *str) {
 	int length;
 	metastring *original;
 	metastring *primary;
@@ -191,7 +197,7 @@ void double_metaphone_custom(const char *str, char **codes) {
 	last = length - 1;
 	original = new_meta_string(str);
 	/* Pad original so we can index beyond end */
-	metaph_add(original, "     ");
+	metaph_add(original, "	 ");
 
 	primary = new_meta_string("");
 	secondary = new_meta_string("");
@@ -1014,8 +1020,6 @@ void double_metaphone_custom(const char *str, char **codes) {
 			current += 1;
 			break;
 		}
-		/* printf("PRIMARY: %s\n", primary->str);
-		 printf("SECONDARY: %s\n", secondary->str);  */
 	}
 
 	if (primary->length > 4)
@@ -1024,32 +1028,24 @@ void double_metaphone_custom(const char *str, char **codes) {
 	if (secondary->length > 4)
 		set_at(secondary, 4, '\0');
 
-	*codes = primary->str;
-	*++codes = secondary->str;
+	double_metaphone_result *result = (struct double_metaphone_result *)malloc(sizeof(double_metaphone_result));
+	result->primary = primary->str;
+	result->secondary = secondary->str;
 
 	free_meta_string(original);
 	free_meta_string(primary);
 	free_meta_string(secondary);
 
-}
-
-char *double_metaphone(const char *str) {
-
-	char *code = malloc(MAX_MLEN * sizeof(char));
-	code[0] = '\0';
-	double_metaphone_custom(str, &code);
-	return (code);
-
+	return result;
 }
 
 float double_metaphone_similarity(const char *str1, const char *str2) {
+	double_metaphone_result *s1 = double_metaphone(str1);
+	double_metaphone_result *s2 = double_metaphone(str2);
+	float res = smith_waterman_gotoh_similarity(s1->primary, s2->primary);
+	free_double_metaphone_result(s1);
+	free_double_metaphone_result(s2);
 
-	char *s1 = double_metaphone(str1);
-	char *s2 = double_metaphone(str2);
-	float res = smith_waterman_gotoh_similarity(s1, s2);
-	free(s1);
-	free(s2);
-
-	return (res);
+	return res;
 
 }
